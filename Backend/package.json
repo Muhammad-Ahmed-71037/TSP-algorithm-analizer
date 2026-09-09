@@ -1,0 +1,21 @@
+{
+  "name": "intelligent-graph-algorithm-analyzer-server",
+  "version": "1.0.0",
+  "description": "Backend API for the Intelligent Graph Algorithm Analyzer DAA project - dataset processing, graph construction, Dijkstra/Prim/Floyd-Warshall execution, and a secure AI proxy.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "keywords": ["daa", "graph-algorithms", "dijkstra", "prim", "floyd-warshall"],
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "csv-parse": "^7.0.2",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0"
+  }
+}
