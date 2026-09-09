@@ -7,7 +7,8 @@
  * just catch(err) and show err.message in a toast.
  */
 
-const BASE = '/api';
+const RAW_BASE = import.meta.env.VITE_API_BASE_URL || '';
+const BASE = RAW_BASE ? `${RAW_BASE.replace(/\/$/, '')}/api` : '/api';
 
 async function request(path, options = {}) {
   let response;
