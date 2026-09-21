@@ -5,7 +5,6 @@ import { useTSP } from '../context/TSPContext';
 import { useToast } from '../context/ToastContext';
 import * as api from '../services/api';
 import { SectionHeading, Card, Button, Badge } from '../components/ui/Primitives';
-import TSPAlgorithm from './TSPAlgorithm';
 
 const SUGGESTED_QUESTIONS = [
   'Why is Dijkstra classified as greedy?',
@@ -96,11 +95,7 @@ export default function AIAnalyst() {
 
   return (
     <div>
-      <SectionHeading eyebrow="AI" title="🤖 AI Algorithm Analyst" description="Understand what happened inside your algorithm." />
-
-      <div className="mb-6">
-        <TSPAlgorithm algorithm="aiTSP" />
-      </div>
+      <SectionHeading eyebrow="AI Assistant" title="AI Algorithm Tutor" description="Interactive AI tutor to explain graph theory concepts, interpret your TSP results, and answer algorithm questions in plain language." />
 
       <div className="grid lg:grid-cols-[300px_1fr] gap-6">
         <div className="flex flex-col gap-4">
@@ -168,7 +163,7 @@ export default function AIAnalyst() {
                 <button
                   key={q}
                   onClick={() => send(q)}
-                  className="text-left text-xs px-3 py-2 rounded-lg bg-[var(--color-surface-2)] dark:bg-[var(--color-surface-2-dark)] hover:opacity-80"
+                  className="text-left text-xs px-3 py-2 rounded-lg bg-[var(--color-surface-2)] hover:bg-[var(--color-primary-soft)] hover:text-[var(--color-primary)] border border-transparent hover:border-blue-200/60 transition-all duration-200"
                 >
                   {q}
                 </button>
@@ -177,39 +172,39 @@ export default function AIAnalyst() {
           </Card>
         </div>
 
-        <Card className="flex flex-col h-[600px]">
-          <div ref={scrollRef} className="flex-1 overflow-y-auto scroll-thin p-5 space-y-4">
+        <Card className="flex flex-col h-[600px] overflow-hidden">
+          <div ref={scrollRef} className="flex-1 overflow-y-auto scroll-thin p-4 space-y-3 bg-[#f8fafc]">
             {messages.map((m, i) => (
-              <div key={i} className={`flex gap-3 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                <div className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 ${m.role === 'ai' ? 'bg-[var(--color-ai-soft)] dark:bg-[var(--color-ai-soft-dark)] text-[var(--color-ai)]' : 'bg-[var(--color-dijkstra-soft)] dark:bg-[var(--color-dijkstra-soft-dark)] text-[var(--color-dijkstra)]'}`}>
-                  {m.role === 'ai' ? <Bot className="h-4 w-4" /> : <User className="h-4 w-4" />}
+              <div key={i} className={`flex gap-2.5 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}>
+                <div className={`h-7 w-7 rounded-md flex items-center justify-center shrink-0 text-xs font-bold ${m.role === 'ai' ? 'bg-[#fef3c7] text-[#92400e]' : 'bg-[#eff6ff] text-[#1d4ed8]'}`}>
+                  {m.role === 'ai' ? <Bot className="h-3.5 w-3.5" /> : <User className="h-3.5 w-3.5" />}
                 </div>
-                <div className={`max-w-[75%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${m.role === 'ai' ? 'bg-[var(--color-surface-2)] dark:bg-[var(--color-surface-2-dark)]' : 'bg-[var(--color-dijkstra)] text-white'}`}>
+                <div className={`max-w-[80%] rounded-md px-3.5 py-2 text-xs leading-relaxed whitespace-pre-wrap ${m.role === 'ai' ? 'bg-white border border-[#e2e8f0] text-[#1a2332]' : 'bg-[#2563eb] text-white'}`}>
                   {m.content}
                 </div>
               </div>
             ))}
             {loading && (
-              <div className="flex gap-3">
-                <div className="h-8 w-8 rounded-full flex items-center justify-center bg-[var(--color-ai-soft)] dark:bg-[var(--color-ai-soft-dark)] text-[var(--color-ai)]">
-                  <Sparkles className="h-4 w-4 animate-pulse" />
+              <div className="flex gap-2.5">
+                <div className="h-7 w-7 rounded-md flex items-center justify-center bg-[#fef3c7] text-[#92400e]">
+                  <Sparkles className="h-3.5 w-3.5 animate-pulse" />
                 </div>
-                <div className="rounded-2xl px-4 py-2.5 text-sm bg-[var(--color-surface-2)] dark:bg-[var(--color-surface-2-dark)] text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">
-                  Thinking…
+                <div className="rounded-md px-3.5 py-2 text-xs bg-white border border-[#e2e8f0] text-[#637083]">
+                  Consulting algorithmic knowledge base…
                 </div>
               </div>
             )}
           </div>
-          <div className="border-t border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] p-4 flex gap-2">
+          <div className="border-t border-[#e2e8f0] bg-white p-3 flex gap-2">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && send()}
-              placeholder="Ask about an algorithm or your result..."
-              className="flex-1 rounded-xl border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] px-4 py-2.5 text-sm outline-none focus:border-[var(--color-dijkstra)]"
+              placeholder="Ask about time complexity, bitonic subproblems, edge relaxation..."
+              className="flex-1 rounded-md border border-[#e2e8f0] bg-white px-3 py-1.5 text-xs text-[#1a2332] outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors"
             />
-            <Button icon={Send} onClick={() => send()} loading={loading} disabled={!input.trim()}>
-              Send
+            <Button size="sm" icon={Send} onClick={() => send()} loading={loading} disabled={!input.trim()}>
+              Send Query
             </Button>
           </div>
         </Card>

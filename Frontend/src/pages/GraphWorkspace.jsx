@@ -50,8 +50,8 @@ function QuickAddSearch() {
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search a city to add..."
-          className="w-full rounded-lg border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] pl-9 pr-3 py-2 text-sm outline-none focus:border-[var(--color-dijkstra)]"
+          placeholder="Search city to add..."
+          className="w-full rounded-md border border-[#e2e8f0] bg-white pl-8 pr-3 py-1.5 text-xs text-[#1a2332] outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors"
         />
       </div>
       {matches.length > 0 && (

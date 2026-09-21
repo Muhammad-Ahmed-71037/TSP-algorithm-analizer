@@ -93,17 +93,17 @@ export default function Dataset() {
       )}
 
       {/* Search + filters */}
-      <div className="flex flex-col sm:flex-row gap-3 mb-4">
+      <div className="flex flex-col sm:flex-row gap-2.5 mb-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#637083]" />
           <input
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
               setPage(1);
             }}
-            placeholder="Search city or country..."
-            className="w-full rounded-xl border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] pl-9 pr-4 py-2.5 text-sm outline-none focus:border-[var(--color-dijkstra)]"
+            placeholder="Filter by city or country name..."
+            className="w-full rounded-md border border-[#e2e8f0] bg-white pl-8 pr-3 py-1.5 text-xs text-[#1a2332] outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors"
           />
         </div>
         <select
@@ -112,7 +112,7 @@ export default function Dataset() {
             setCountry(e.target.value);
             setPage(1);
           }}
-          className="rounded-xl border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] px-4 py-2.5 text-sm outline-none focus:border-[var(--color-dijkstra)] max-w-full sm:max-w-[220px]"
+          className="rounded-md border border-[#e2e8f0] bg-white px-3 py-1.5 text-xs text-[#1a2332] outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] max-w-full sm:max-w-[200px] transition-colors"
         >
           <option value="">All countries</option>
           {countries.map((c) => (
@@ -124,6 +124,7 @@ export default function Dataset() {
         {(search || country) && (
           <Button
             variant="ghost"
+            size="sm"
             icon={X}
             onClick={() => {
               setSearch('');
@@ -131,35 +132,35 @@ export default function Dataset() {
               setPage(1);
             }}
           >
-            Clear
+            Clear Filters
           </Button>
         )}
       </div>
 
       {/* Table */}
-      <div className="rounded-2xl border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] overflow-hidden">
+      <div className="rounded-md border border-[#e2e8f0] bg-white overflow-hidden shadow-xs">
         <div className="overflow-x-auto scroll-thin">
-          <table className="w-full text-sm">
-            <thead className="bg-[var(--color-surface-2)] dark:bg-[var(--color-surface-2-dark)]">
+          <table className="w-full text-xs">
+            <thead className="bg-[#f8fafc] border-b border-[#e2e8f0] text-[10px] uppercase font-bold tracking-wider text-[#637083]">
               <tr>
-                <th className="px-4 py-3 text-left w-10"></th>
-                <th className="px-4 py-3 text-left"><SortHeader label="City" field="city" sortBy={sortBy} order={order} onSort={handleSort} /></th>
-                <th className="px-4 py-3 text-left"><SortHeader label="Country" field="country" sortBy={sortBy} order={order} onSort={handleSort} /></th>
-                <th className="px-4 py-3 text-left"><SortHeader label="Latitude" field="lat" sortBy={sortBy} order={order} onSort={handleSort} /></th>
-                <th className="px-4 py-3 text-left"><SortHeader label="Longitude" field="lng" sortBy={sortBy} order={order} onSort={handleSort} /></th>
-                <th className="px-4 py-3 text-left"><SortHeader label="Population" field="population" sortBy={sortBy} order={order} onSort={handleSort} /></th>
+                <th className="px-3 py-2 text-left w-8"></th>
+                <th className="px-3 py-2 text-left"><SortHeader label="City" field="city" sortBy={sortBy} order={order} onSort={handleSort} /></th>
+                <th className="px-3 py-2 text-left"><SortHeader label="Country" field="country" sortBy={sortBy} order={order} onSort={handleSort} /></th>
+                <th className="px-3 py-2 text-left"><SortHeader label="Latitude" field="lat" sortBy={sortBy} order={order} onSort={handleSort} /></th>
+                <th className="px-3 py-2 text-left"><SortHeader label="Longitude" field="lng" sortBy={sortBy} order={order} onSort={handleSort} /></th>
+                <th className="px-3 py-2 text-left"><SortHeader label="Population" field="population" sortBy={sortBy} order={order} onSort={handleSort} /></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-[#f1f5f9]">
               {!loading &&
                 result?.items.map((c) => (
                   <tr
                     key={c.id}
                     onClick={() => toggleCity(c)}
-                    className={`cursor-pointer border-t border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] transition-colors ${
+                    className={`cursor-pointer transition-colors ${
                       selectedIds.has(c.id)
-                        ? 'bg-[var(--color-dijkstra-soft)] dark:bg-[var(--color-dijkstra-soft-dark)]'
-                        : 'hover:bg-[var(--color-surface-2)] dark:hover:bg-[var(--color-surface-2-dark)]'
+                        ? 'bg-[#eff6ff]/70 border-l-2 border-l-[#2563eb]'
+                        : 'hover:bg-[#f8fafc]'
                     }`}
                   >
                     <td className="px-4 py-2.5">

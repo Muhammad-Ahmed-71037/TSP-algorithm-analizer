@@ -98,20 +98,31 @@ export default function CitySearchSelector({
   return (
     <div ref={containerRef} className="relative">
       {mode === 'single' && selected ? (
-        <div className="flex items-center justify-between rounded-xl border border-[var(--color-dijkstra)] bg-[var(--color-dijkstra-soft)] dark:bg-[var(--color-dijkstra-soft-dark)] px-3 py-2.5">
-          <div className="flex items-center gap-2 text-sm">
-            <Check className="h-4 w-4 text-[var(--color-dijkstra)]" />
-            <span className="font-medium text-[var(--color-dijkstra)]">
-              {selected.city}, {selected.country}
-            </span>
+        <div className="flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50/70 dark:bg-blue-950/30 px-3.5 py-2.5 shadow-2xs">
+          <div className="flex items-center gap-2.5 text-sm">
+            <div className="h-6 w-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-semibold shadow-2xs">
+              <Check className="h-3.5 w-3.5" />
+            </div>
+            <div>
+              <span className="font-semibold text-blue-950 dark:text-blue-200 block text-xs">
+                {selected.city}, {selected.country}
+              </span>
+              <span className="text-[10px] text-blue-600 dark:text-blue-400 font-mono">
+                {selected.lat.toFixed(2)}°, {selected.lng.toFixed(2)}°
+              </span>
+            </div>
           </div>
-          <button onClick={() => onSelect?.(null)} aria-label="Clear starting city" className="text-[var(--color-dijkstra)]">
+          <button
+            onClick={() => onSelect?.(null)}
+            aria-label="Clear starting city"
+            className="p-1 rounded-md text-blue-500 hover:text-blue-800 hover:bg-blue-100/60 transition-colors"
+          >
             <X className="h-4 w-4" />
           </button>
         </div>
       ) : (
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]" />
+        <div className="relative group">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--color-ink-muted)] group-focus-within:text-[var(--color-primary)] transition-colors" />
           <input
             value={query}
             onChange={(e) => {
@@ -121,9 +132,11 @@ export default function CitySearchSelector({
             onFocus={() => setOpen(true)}
             onKeyDown={handleKeyDown}
             placeholder={placeholder}
-            className="w-full rounded-xl border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] pl-9 pr-9 py-2.5 text-sm outline-none focus:border-[var(--color-dijkstra)]"
+            className="w-full rounded-xl border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] bg-white dark:bg-[var(--color-surface-dark)] pl-10 pr-10 py-2.5 text-xs sm:text-sm text-[var(--color-ink)] dark:text-[var(--color-ink-dark)] placeholder-[var(--color-ink-muted)]/70 shadow-2xs outline-none transition-all duration-150 focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/15"
           />
-          {loading && <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]" />}
+          {loading && (
+            <Loader2 className="absolute right-3.5 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-[var(--color-primary)]" />
+          )}
         </div>
       )}
 

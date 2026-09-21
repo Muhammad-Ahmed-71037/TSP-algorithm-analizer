@@ -5,16 +5,16 @@ export default function About() {
     <div className="max-w-3xl">
       <SectionHeading eyebrow="Coursework Project" title="Design & Analysis of Algorithms" />
 
-      <div className="space-y-6">
-        <Card className="p-6 border-l-4 border-l-[var(--color-primary)]">
+      <div className="space-y-4">
+        <Card className="p-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <span className="text-xs font-mono text-[var(--color-primary)] uppercase tracking-wider font-semibold">Coursework Submitter</span>
-              <h3 className="font-display font-bold text-xl text-[var(--color-ink)] dark:text-[var(--color-ink-dark)] mt-0.5">
+              <span className="text-[10px] font-mono text-[#2563eb] uppercase tracking-wider font-bold">Coursework Author</span>
+              <h3 className="font-bold text-lg text-[#0f172a] mt-0.5">
                 Muhammad Ahmed
               </h3>
-              <p className="text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] mt-1">
-                BS Computer Science · Iqra University · Semester 5
+              <p className="text-xs text-[#637083] mt-0.5">
+                BS Computer Science · Iqra University · Semester 5 · CS-301
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -22,7 +22,7 @@ export default function About() {
                 href="https://github.com/Muhammad-Ahmed-71037"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 rounded-lg border border-[var(--color-border-subtle-dark)] bg-[var(--color-surface-2-dark)] text-xs font-medium hover:border-[var(--color-primary)] transition-colors"
+                className="px-2.5 py-1 rounded-md border border-[#e2e8f0] bg-[#f8fafc] text-xs font-semibold text-[#1a2332] hover:border-[#2563eb] hover:text-[#2563eb] transition-colors"
               >
                 GitHub
               </a>
@@ -30,7 +30,7 @@ export default function About() {
                 href="https://www.linkedin.com/in/muhammad-ahmed-201ba1344/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 rounded-lg border border-[var(--color-border-subtle-dark)] bg-[var(--color-surface-2-dark)] text-xs font-medium hover:border-[#38bdf8] transition-colors"
+                className="px-2.5 py-1 rounded-md border border-[#e2e8f0] bg-[#f8fafc] text-xs font-semibold text-[#1a2332] hover:border-[#0a66c2] hover:text-[#0a66c2] transition-colors"
               >
                 LinkedIn
               </a>
@@ -38,9 +38,9 @@ export default function About() {
           </div>
         </Card>
 
-        <Card className="p-6">
-          <h3 className="font-display font-semibold text-lg mb-2">Problem Statement</h3>
-          <p className="text-sm text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] leading-relaxed">
+        <Card className="p-5">
+          <h3 className="font-bold text-xs uppercase tracking-wider text-[#0f172a] mb-1.5">Problem Formulation</h3>
+          <p className="text-xs text-[#475569] leading-relaxed">
             Graph algorithms and NP-hard problems like the Traveling Salesman Problem (TSP) are difficult to grasp from abstract theory alone. Standard textbook pseudocode obscures practical trade-offs between exact exponential methods, dynamic programming memoization, greedy approximations, and geographic distance constraints.
           </p>
         </Card>

@@ -92,23 +92,23 @@ export default function Complexity() {
       </div>
 
       <Card className="p-6 mb-8">
-        <h3 className="font-display font-semibold text-lg mb-1">Theoretical Growth Curves</h3>
-        <p className="text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] mb-4">
+        <h3 className="font-semibold text-xs uppercase tracking-wider text-[#0f172a] mb-1">Theoretical Growth Curves</h3>
+        <p className="text-xs text-[#637083] mb-4">
           A theoretical visualization of how each growth rate scales with input size V (log scale on the y-axis) —
           this is not a measured benchmark.
         </p>
         <ResponsiveContainer width="100%" height={320}>
           <LineChart data={growthData}>
-            <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-            <XAxis dataKey="V" tick={{ fontSize: 12 }} label={{ value: 'V (vertices)', position: 'insideBottom', offset: -5, fontSize: 12 }} />
-            <YAxis scale="log" domain={['auto', 'auto']} tick={{ fontSize: 12 }} allowDataOverflow />
+            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" opacity={0.75} />
+            <XAxis dataKey="V" tick={{ fontSize: 11 }} label={{ value: 'V (vertices)', position: 'insideBottom', offset: -5, fontSize: 11 }} />
+            <YAxis scale="log" domain={['auto', 'auto']} tick={{ fontSize: 11 }} allowDataOverflow />
             <Tooltip />
-            <Legend />
+            <Legend wrapperStyle={{ fontSize: 11 }} />
             <Line type="monotone" dataKey="O(V)" stroke="#94A3B8" dot={false} strokeWidth={2} />
-            <Line type="monotone" dataKey="O(log V)" stroke="#16B368" dot={false} strokeWidth={2} />
-            <Line type="monotone" dataKey="O(V log V)" stroke="#2E6BFF" dot={false} strokeWidth={2} />
-            <Line type="monotone" dataKey="O(V²)" stroke="#F0A233" dot={false} strokeWidth={2} />
-            <Line type="monotone" dataKey="O(V³)" stroke="#7C5CFC" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="O(log V)" stroke="#059669" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="O(V log V)" stroke="#2563eb" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="O(V²)" stroke="#d97706" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="O(V³)" stroke="#7c3aed" dot={false} strokeWidth={2} />
           </LineChart>
         </ResponsiveContainer>
       </Card>
@@ -116,15 +116,15 @@ export default function Complexity() {
       <Card className="p-6">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <h3 className="font-display font-semibold text-lg">AI Performance Analysis</h3>
-            <p className="text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">Uses your actual measured execution times - never invented figures.</p>
+            <h3 className="font-semibold text-xs uppercase tracking-wider text-[#0f172a]">AI Performance Analysis</h3>
+            <p className="text-xs text-[#637083]">Uses your actual measured execution times - never invented figures.</p>
           </div>
           <Button variant="secondary" icon={Sparkles} loading={loading} onClick={handleAnalyze} disabled={!hasMetrics}>
             Analyze Performance
           </Button>
         </div>
-        {!hasMetrics && <p className="text-sm text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">Run an algorithm in the Graph Workspace first to unlock this.</p>}
-        {analysis && <div className="mt-3 rounded-xl bg-[var(--color-ai-soft)] dark:bg-[var(--color-ai-soft-dark)] p-4 text-sm leading-relaxed whitespace-pre-wrap">{analysis}</div>}
+        {!hasMetrics && <p className="text-xs text-[#637083]">Run an algorithm in the Graph Workspace first to unlock this.</p>}
+        {analysis && <div className="mt-3 rounded-md bg-[#fffbeb] border border-[#fde68a] p-4 text-xs text-[#78350f] leading-relaxed whitespace-pre-wrap">{analysis}</div>}
       </Card>
     </div>
   );

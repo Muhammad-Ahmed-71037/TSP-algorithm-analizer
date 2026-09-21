@@ -24,9 +24,9 @@ const EDGES = [
 ];
 
 const TONE_HEX = {
-  dijkstra: '#38bdf8',
-  prim: '#22c55e',
-  floyd: '#f97316',
+  dijkstra: '#2563eb',
+  prim: '#059669',
+  floyd: '#7c3aed',
 };
 
 function nodeById(id) {
@@ -53,8 +53,8 @@ export default function NetworkHero({ className = '' }) {
         const to = nodeById(toId);
         return (
           <g key={`${fromId}-${toId}`}>
-            <line x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke="#263449" strokeWidth="1.5" />
-            <circle r="3.5" fill="#ffffff">
+            <line x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke="#cbd5e1" strokeWidth="1.5" />
+            <circle r="4" fill="#2563eb" stroke="#ffffff" strokeWidth="1.5">
               <animateMotion
                 dur={`${4 + (i % 4)}s`}
                 repeatCount="indefinite"
@@ -69,11 +69,10 @@ export default function NetworkHero({ className = '' }) {
 
       {NODES.map((n, i) => (
         <g key={n.id}>
-          <circle cx={n.x} cy={n.y} r="16" fill="url(#nodeGlow)" opacity="0.25" />
-          <circle cx={n.x} cy={n.y} r="6.5" fill={TONE_HEX[n.tone]}>
+          <circle cx={n.x} cy={n.y} r="6.5" fill={TONE_HEX[n.tone]} stroke="#ffffff" strokeWidth="2">
             <animate attributeName="r" values="6.5;8;6.5" dur="3s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
           </circle>
-          <circle cx={n.x} cy={n.y} r="6.5" fill="none" stroke={TONE_HEX[n.tone]} strokeOpacity="0.4">
+          <circle cx={n.x} cy={n.y} r="6.5" fill="none" stroke={TONE_HEX[n.tone]} strokeOpacity="0.5" strokeWidth="1.5">
             <animate attributeName="r" values="6.5;18;6.5" dur="3s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
             <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
           </circle>

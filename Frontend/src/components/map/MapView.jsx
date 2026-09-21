@@ -11,11 +11,11 @@ function FitBounds({ bounds }) {
 }
 
 const TONE_HEX = {
-  dijkstra: '#38bdf8',
-  prim: '#22c55e',
-  floyd: '#f97316',
-  neutral: '#94a3b8',
-  ai: '#f59e0b',
+  dijkstra: '#2563eb', // Royal Blue
+  prim: '#059669',     // Emerald
+  floyd: '#7c3aed',    // Purple/Indigo
+  neutral: '#94a3b8',  // Slate gray
+  ai: '#d97706',       // Amber/Ochre
 };
 
 /**

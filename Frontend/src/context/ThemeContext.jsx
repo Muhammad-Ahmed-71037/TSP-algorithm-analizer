@@ -3,9 +3,15 @@ import { createContext, useContext, useEffect, useState } from 'react';
 const ThemeContext = createContext(null);
 
 function getInitialTheme() {
-  const stored = localStorage.getItem('iga-theme');
-  if (stored === 'light' || stored === 'dark') return stored;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  try {
+    // Purge legacy dark preference so users see the new light theme
+    localStorage.removeItem('iga-theme');
+    const stored = localStorage.getItem('iga-theme-v2');
+    if (stored === 'dark') return 'dark';
+  } catch {
+    // ignore storage errors
+  }
+  return 'light';
 }
 
 export function ThemeProvider({ children }) {
@@ -13,7 +19,11 @@ export function ThemeProvider({ children }) {
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
-    localStorage.setItem('iga-theme', theme);
+    try {
+      localStorage.setItem('iga-theme-v2', theme);
+    } catch {
+      // ignore
+    }
   }, [theme]);
 
   const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
