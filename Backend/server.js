@@ -80,13 +80,18 @@ process.on('unhandledRejection', (reason) => {
   console.error('[Unhandled Rejection]', reason);
 });
 
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Intelligent Graph Algorithm Analyzer API running on http://localhost:${PORT}`);
-  if (!process.env.OPENAI_API_KEY) {
-    // eslint-disable-next-line no-console
-    console.warn('  ⚠ OPENAI_API_KEY not set - AI features will return a 503 until configured in server/.env');
-  }
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(
+      `Intelligent Graph Algorithm Analyzer API running on http://localhost:${PORT}`
+    );
+
+    if (!process.env.OPENAI_API_KEY) {
+      console.warn(
+        '⚠ OPENAI_API_KEY not set - AI features will return a 503 until configured'
+      );
+    }
+  });
+}
 
 module.exports = app;
