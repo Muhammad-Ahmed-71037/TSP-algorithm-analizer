@@ -1,13 +1,16 @@
 @import 'tailwindcss';
 
 /*
- * DESIGN TOKENS — Executive Analytics / SaaS Suite
- * Inspired by modern dashboard interfaces:
- * - Deep midnight navy sidebar (#0D192E)
- * - Soft refreshing ice-blue canvas (#EAF1F8)
- * - Pure white elevated cards (#FFFFFF) with smooth rounded-2xl radii
- * - Deep slate navy typography (#0F172A)
- * - Electric / royal blue accent (#2563EB / #3B82F6)
+ * DESIGN TOKENS — DAA Algorithm Analyzer (Academic Edition)
+ * - Canvas Background: Warm Cream (#FFF9D6)
+ * - Containers & Panels: Soft Pink (#FFDCDC)
+ * - Primary Accents & Borders: Primary Dusty Rose (#D8A2A2)
+ * - Primary Action Buttons & Routes: Olive Green (#8EA66B)
+ * - Headings: #1E1E1E (High-contrast deep charcoal)
+ * - Primary Text: #252525 (High-contrast dark charcoal)
+ * - Secondary Text: #4A4A4A
+ * - Muted/Helper Text: #66615A
+ * - Placeholders: #77716A
  */
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -17,61 +20,70 @@
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
 
-  /* Executive Cool Theme */
-  --color-canvas:    #eaf1f8;
+  /* Warm Pastel Theme Surfaces */
+  --color-canvas:    #fff9d6;
   --color-surface:   #ffffff;
-  --color-surface-2: #f4f8fc;
-  --color-surface-3: #e2ecf6;
+  --color-surface-2: #ffdcdc;
+  --color-surface-3: #fff3c4;
 
-  /* Sidebar Midnight Navy */
-  --color-sidebar:        #0d192e;
-  --color-sidebar-active: #1a2c4e;
-  --color-sidebar-border: #16253d;
-  --color-sidebar-text:   #8fa3bf;
+  /* Sidebar Dark Charcoal Framework */
+  --color-sidebar:        #262322;
+  --color-sidebar-active: #3b3534;
+  --color-sidebar-border: #383030;
+  --color-sidebar-text:   #c4b7b5;
 
-  --color-border:        #e2e8f0;
-  --color-border-subtle: #e8eef5;
-  --color-border-hover:  #cbd5e1;
+  /* Borders */
+  --color-border:        #d8a2a2;
+  --color-border-subtle: #e5bebe;
+  --color-border-hover:  #b57f7f;
 
-  --color-ink:       #0f172a;
-  --color-ink-muted: #64748b;
-  --color-ink-faint: #94a3b8;
+  /* High Contrast Typography */
+  --color-ink:            #252525;
+  --color-ink-heading:    #1e1e1e;
+  --color-ink-secondary:  #4a4a4a;
+  --color-ink-muted:      #66615a;
+  --color-ink-faint:      #77716a;
 
-  /* Primary interactive */
-  --color-primary:       #2563eb;
-  --color-primary-hover: #1d4ed8;
-  --color-primary-soft:  #eff6ff;
-  --color-primary-soft-dark: #1e3a8a;
+  /* Primary Interactive Actions */
+  --color-primary:       #8ea66b;
+  --color-primary-hover: #7a9159;
+  --color-primary-soft:  #eef3e6;
 
-  /* Algorithm identities */
-  --color-dijkstra:      #2563eb;
-  --color-dijkstra-soft: #eff6ff;
-  --color-prim:          #059669;
-  --color-prim-soft:     #ecfdf5;
-  --color-floyd:         #7c3aed;
-  --color-floyd-soft:    #f5f3ff;
-  --color-ai:            #d97706;
-  --color-ai-soft:       #fffbeb;
+  /* Accent Rose */
+  --color-accent:       #d8a2a2;
+  --color-accent-hover: #c78f8f;
+  --color-accent-soft:  #ffdcdc;
+
+  /* Algorithm Identities */
+  --color-dijkstra:      #d8a2a2;
+  --color-dijkstra-soft: #ffdcdc;
+  --color-prim:          #8ea66b;
+  --color-prim-soft:     #eef3e6;
+  --color-floyd:         #d8a2a2;
+  --color-floyd-soft:    #ffdcdc;
+  --color-ai:            #8ea66b;
+  --color-ai-soft:       #fff9d6;
 
   /* Status */
-  --color-danger:       #dc2626;
-  --color-danger-soft:  #fef2f2;
-  --color-success:      #16a34a;
-  --color-success-soft: #f0fdf4;
+  --color-danger:       #b93838;
+  --color-danger-soft:  #fce8e8;
+  --color-success:      #8ea66b;
+  --color-success-soft: #eef3e6;
 }
 
 html { color-scheme: light; }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-canvas);
-  color: var(--color-ink);
+  background-color: #fff9d6;
+  color: #252525;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, .font-display {
   font-family: var(--font-display);
+  color: #1e1e1e;
 }
 
 .font-data {
@@ -81,9 +93,15 @@ h1, h2, h3, h4, .font-display {
 
 /* Focus ring */
 :focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid #8ea66b;
   outline-offset: 2px;
   border-radius: 6px;
+}
+
+/* Placeholder styling */
+input::placeholder, textarea::placeholder {
+  color: #77716a !important;
+  opacity: 1;
 }
 
 /* Reduced motion */
@@ -96,21 +114,21 @@ h1, h2, h3, h4, .font-display {
   }
 }
 
-/* Thin scrollbars for data panels */
+/* Thin scrollbars with warm tones */
 .scroll-thin::-webkit-scrollbar { width: 6px; height: 6px; }
 .scroll-thin::-webkit-scrollbar-track { background: transparent; }
 .scroll-thin::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1;
+  background-color: #d8a2a2;
   border-radius: 6px;
 }
 .scroll-thin::-webkit-scrollbar-thumb:hover {
-  background-color: #94a3b8;
+  background-color: #b57f7f;
 }
 
-/* Leaflet map */
+/* Leaflet map container */
 .leaflet-container {
   width: 100%;
   height: 100%;
-  background: var(--color-surface-2);
+  background: #fffdf5;
   font-family: var(--font-sans);
 }

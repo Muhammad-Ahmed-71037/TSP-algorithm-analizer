@@ -14,10 +14,10 @@ function SortHeader({ label, field, sortBy, order, onSort }) {
   return (
     <button
       onClick={() => onSort(field)}
-      className="flex items-center gap-1 font-semibold text-xs uppercase tracking-wide text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] hover:text-[var(--color-ink)] dark:hover:text-[var(--color-ink-dark)]"
+      className="flex items-center gap-1 font-bold text-[11px] uppercase tracking-wide text-[#4A4A4A] hover:text-[#1E1E1E]"
     >
       {label}
-      {active && (order === 'asc' ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />)}
+      {active && (order === 'asc' ? <ChevronUp className="h-3.5 w-3.5 text-[#8EA66B]" /> : <ChevronDown className="h-3.5 w-3.5 text-[#8EA66B]" />)}
     </button>
   );
 }
@@ -76,7 +76,7 @@ export default function Dataset() {
         description="Browse, search, and select cities to build your graph. Only cleaned, validated records are shown."
         action={
           selectedCities.length > 0 && (
-            <Button icon={Share2} onClick={() => navigate('/graph')}>
+            <Button variant="primary" icon={Share2} onClick={() => navigate('/graph')}>
               Use {selectedCities.length} selected in Graph
             </Button>
           )
@@ -95,7 +95,7 @@ export default function Dataset() {
       {/* Search + filters */}
       <div className="flex flex-col sm:flex-row gap-2.5 mb-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#637083]" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#77716A]" />
           <input
             value={search}
             onChange={(e) => {
@@ -103,7 +103,7 @@ export default function Dataset() {
               setPage(1);
             }}
             placeholder="Filter by city or country name..."
-            className="w-full rounded-md border border-[#e2e8f0] bg-white pl-8 pr-3 py-1.5 text-xs text-[#1a2332] outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors"
+            className="w-full rounded-lg border border-[#E5BEBE] bg-white pl-8 pr-3 py-2 text-xs text-[#252525] placeholder:text-[#77716A] outline-none focus:border-[#8EA66B] focus:ring-1 focus:ring-[#8EA66B] transition-colors"
           />
         </div>
         <select
@@ -112,7 +112,7 @@ export default function Dataset() {
             setCountry(e.target.value);
             setPage(1);
           }}
-          className="rounded-md border border-[#e2e8f0] bg-white px-3 py-1.5 text-xs text-[#1a2332] outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] max-w-full sm:max-w-[200px] transition-colors"
+          className="rounded-lg border border-[#E5BEBE] bg-white px-3 py-2 text-xs text-[#252525] outline-none focus:border-[#8EA66B] focus:ring-1 focus:ring-[#8EA66B] max-w-full sm:max-w-[200px] transition-colors"
         >
           <option value="">All countries</option>
           {countries.map((c) => (
@@ -123,7 +123,7 @@ export default function Dataset() {
         </select>
         {(search || country) && (
           <Button
-            variant="ghost"
+            variant="outline"
             size="sm"
             icon={X}
             onClick={() => {
@@ -138,20 +138,20 @@ export default function Dataset() {
       </div>
 
       {/* Table */}
-      <div className="rounded-md border border-[#e2e8f0] bg-white overflow-hidden shadow-xs">
+      <div className="rounded-xl border border-[#E5BEBE] bg-white overflow-hidden shadow-2xs">
         <div className="overflow-x-auto scroll-thin">
           <table className="w-full text-xs">
-            <thead className="bg-[#f8fafc] border-b border-[#e2e8f0] text-[10px] uppercase font-bold tracking-wider text-[#637083]">
+            <thead className="bg-[#FFFDF5] border-b border-[#E5BEBE] text-[11px] uppercase font-bold tracking-wider text-[#4A4A4A]">
               <tr>
-                <th className="px-3 py-2 text-left w-8"></th>
-                <th className="px-3 py-2 text-left"><SortHeader label="City" field="city" sortBy={sortBy} order={order} onSort={handleSort} /></th>
-                <th className="px-3 py-2 text-left"><SortHeader label="Country" field="country" sortBy={sortBy} order={order} onSort={handleSort} /></th>
-                <th className="px-3 py-2 text-left"><SortHeader label="Latitude" field="lat" sortBy={sortBy} order={order} onSort={handleSort} /></th>
-                <th className="px-3 py-2 text-left"><SortHeader label="Longitude" field="lng" sortBy={sortBy} order={order} onSort={handleSort} /></th>
-                <th className="px-3 py-2 text-left"><SortHeader label="Population" field="population" sortBy={sortBy} order={order} onSort={handleSort} /></th>
+                <th className="px-3 py-2.5 text-left w-8"></th>
+                <th className="px-3 py-2.5 text-left"><SortHeader label="City" field="city" sortBy={sortBy} order={order} onSort={handleSort} /></th>
+                <th className="px-3 py-2.5 text-left"><SortHeader label="Country" field="country" sortBy={sortBy} order={order} onSort={handleSort} /></th>
+                <th className="px-3 py-2.5 text-left"><SortHeader label="Latitude" field="lat" sortBy={sortBy} order={order} onSort={handleSort} /></th>
+                <th className="px-3 py-2.5 text-left"><SortHeader label="Longitude" field="lng" sortBy={sortBy} order={order} onSort={handleSort} /></th>
+                <th className="px-3 py-2.5 text-left"><SortHeader label="Population" field="population" sortBy={sortBy} order={order} onSort={handleSort} /></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#f1f5f9]">
+            <tbody className="divide-y divide-[#F5E6E6]">
               {!loading &&
                 result?.items.map((c) => (
                   <tr
@@ -159,18 +159,18 @@ export default function Dataset() {
                     onClick={() => toggleCity(c)}
                     className={`cursor-pointer transition-colors ${
                       selectedIds.has(c.id)
-                        ? 'bg-[#eff6ff]/70 border-l-2 border-l-[#2563eb]'
-                        : 'hover:bg-[#f8fafc]'
+                        ? 'bg-[#FFDCDC]/50 border-l-4 border-l-[#8EA66B]'
+                        : 'hover:bg-[#FFF9D6]/40'
                     }`}
                   >
                     <td className="px-4 py-2.5">
-                      <input type="checkbox" checked={selectedIds.has(c.id)} onChange={() => toggleCity(c)} onClick={(e) => e.stopPropagation()} className="h-4 w-4 accent-[#2E6BFF]" />
+                      <input type="checkbox" checked={selectedIds.has(c.id)} onChange={() => toggleCity(c)} onClick={(e) => e.stopPropagation()} className="h-4 w-4 accent-[#8EA66B]" />
                     </td>
-                    <td className="px-4 py-2.5 font-medium">{c.city}</td>
-                    <td className="px-4 py-2.5 text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">{c.country}</td>
-                    <td className="px-4 py-2.5 font-data text-xs">{c.lat.toFixed(3)}</td>
-                    <td className="px-4 py-2.5 font-data text-xs">{c.lng.toFixed(3)}</td>
-                    <td className="px-4 py-2.5 font-data text-xs">{c.population ? c.population.toLocaleString() : '—'}</td>
+                    <td className="px-4 py-2.5 font-semibold text-xs text-[#1E1E1E]">{c.city}</td>
+                    <td className="px-4 py-2.5 text-xs text-[#4A4A4A]">{c.country}</td>
+                    <td className="px-4 py-2.5 font-data text-xs text-[#66615A]">{c.lat.toFixed(3)}</td>
+                    <td className="px-4 py-2.5 font-data text-xs text-[#66615A]">{c.lng.toFixed(3)}</td>
+                    <td className="px-4 py-2.5 font-data text-xs font-medium text-[#252525]">{c.population ? c.population.toLocaleString() : '—'}</td>
                   </tr>
                 ))}
             </tbody>
@@ -183,15 +183,15 @@ export default function Dataset() {
         )}
 
         {!loading && result && result.total > 0 && (
-          <div className="flex items-center justify-between px-4 py-3 border-t border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] text-sm text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">
+          <div className="flex items-center justify-between px-4 py-3 border-t border-[#E5BEBE] bg-[#FFFDF5] text-xs font-medium text-[#4A4A4A]">
             <span>
               {result.total.toLocaleString()} cities · Page {result.page} of {result.totalPages}
             </span>
             <div className="flex items-center gap-2">
-              <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)} className="disabled:opacity-30 p-1">
+              <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)} className="rounded-md border border-[#E5BEBE] bg-white p-1 text-[#252525] hover:bg-[#FFDCDC]/30 disabled:opacity-30 disabled:hover:bg-white transition-colors">
                 <ChevronLeft className="h-4 w-4" />
               </button>
-              <button disabled={page >= result.totalPages} onClick={() => setPage((p) => p + 1)} className="disabled:opacity-30 p-1">
+              <button disabled={page >= result.totalPages} onClick={() => setPage((p) => p + 1)} className="rounded-md border border-[#E5BEBE] bg-white p-1 text-[#252525] hover:bg-[#FFDCDC]/30 disabled:opacity-30 disabled:hover:bg-white transition-colors">
                 <ChevronRight className="h-4 w-4" />
               </button>
             </div>

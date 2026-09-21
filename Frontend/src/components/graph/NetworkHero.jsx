@@ -24,9 +24,9 @@ const EDGES = [
 ];
 
 const TONE_HEX = {
-  dijkstra: '#2563eb',
-  prim: '#059669',
-  floyd: '#7c3aed',
+  dijkstra: '#d8a2a2',
+  prim: '#8ea66b',
+  floyd: '#d8a2a2',
 };
 
 function nodeById(id) {
@@ -53,8 +53,8 @@ export default function NetworkHero({ className = '' }) {
         const to = nodeById(toId);
         return (
           <g key={`${fromId}-${toId}`}>
-            <line x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke="#cbd5e1" strokeWidth="1.5" />
-            <circle r="4" fill="#2563eb" stroke="#ffffff" strokeWidth="1.5">
+            <line x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke="#e5bebe" strokeWidth="1.5" />
+            <circle r="4" fill="#8ea66b" stroke="#ffffff" strokeWidth="1.5">
               <animateMotion
                 dur={`${4 + (i % 4)}s`}
                 repeatCount="indefinite"

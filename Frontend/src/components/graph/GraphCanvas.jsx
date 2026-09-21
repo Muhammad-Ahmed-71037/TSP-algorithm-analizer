@@ -1,11 +1,11 @@
 import { useMemo, useRef, useState } from 'react';
 
 const TONE_HEX = {
-  dijkstra: '#2563eb',
-  prim: '#059669',
-  floyd: '#7c3aed',
-  ai: '#d97706',
-  neutral: '#cbd5e1',
+  dijkstra: '#8ea66b',
+  prim: '#8ea66b',
+  floyd: '#8ea66b',
+  ai: '#8ea66b',
+  neutral: '#d8a2a2',
 };
 
 const WIDTH = 800;
@@ -74,7 +74,7 @@ export default function GraphCanvas({ cities = [], edgeList = [], highlightEdges
   if (cities.length === 0) return null;
 
   return (
-    <div className="relative h-full w-full bg-[#f8fafc] overflow-hidden">
+    <div className="relative h-full w-full bg-[#fffdf5] overflow-hidden">
       <svg
         ref={svgRef}
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
@@ -87,7 +87,7 @@ export default function GraphCanvas({ cities = [], edgeList = [], highlightEdges
       >
         <defs>
           <pattern id="graph-dot-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-            <circle cx="12" cy="12" r="1" fill="#cbd5e1" opacity="0.75" />
+            <circle cx="12" cy="12" r="1" fill="#eadcc8" opacity="0.8" />
           </pattern>
         </defs>
         <rect width={WIDTH} height={HEIGHT} fill="url(#graph-dot-grid)" />
@@ -106,9 +106,9 @@ export default function GraphCanvas({ cities = [], edgeList = [], highlightEdges
                 y1={from.y}
                 x2={to.x}
                 y2={to.y}
-                stroke={isHighlighted ? TONE_HEX[highlightTone] : '#94a3b8'}
-                strokeWidth={isHighlighted ? 3 : 1}
-                strokeOpacity={isHighlighted ? 0.95 : 0.25}
+                stroke={isHighlighted ? '#8ea66b' : '#d8a2a2'}
+                strokeWidth={isHighlighted ? 3.5 : 1.2}
+                strokeOpacity={isHighlighted ? 0.95 : 0.4}
                 strokeLinecap="round"
               />
             );
@@ -123,16 +123,16 @@ export default function GraphCanvas({ cities = [], edgeList = [], highlightEdges
                   <circle
                     cx={n.x}
                     cy={n.y}
-                    r={12}
-                    fill={TONE_HEX[highlightTone]}
-                    opacity={0.15}
+                    r={13}
+                    fill="#d8a2a2"
+                    opacity={0.25}
                   />
                 )}
                 <circle
                   cx={n.x}
                   cy={n.y}
                   r={isCurrent ? 9 : emphasized ? 7 : 5}
-                  fill={isCurrent ? '#2563eb' : emphasized ? TONE_HEX[highlightTone] : '#64748b'}
+                  fill={isCurrent ? '#8ea66b' : emphasized ? '#d8a2a2' : '#66615a'}
                   stroke="#ffffff"
                   strokeWidth={2.5}
                   className="shadow-sm"
@@ -141,13 +141,13 @@ export default function GraphCanvas({ cities = [], edgeList = [], highlightEdges
                   x={n.x + 10}
                   y={n.y + 4}
                   fontSize="11"
-                  fontWeight="600"
-                  fill="#0f172a"
+                  fontWeight="700"
+                  fill="#1e1e1e"
                   className="select-none font-sans"
                   style={{
                     paintOrder: 'stroke',
                     stroke: '#ffffff',
-                    strokeWidth: '3.5px',
+                    strokeWidth: '4px',
                     strokeLinejoin: 'round',
                   }}
                 >
@@ -161,7 +161,7 @@ export default function GraphCanvas({ cities = [], edgeList = [], highlightEdges
 
       <button
         onClick={resetView}
-        className="absolute bottom-3 right-3 rounded-lg bg-white/90 backdrop-blur-xs border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-xs hover:bg-white hover:border-slate-300 transition-all cursor-pointer"
+        className="absolute bottom-3 right-3 rounded-lg bg-white/95 backdrop-blur-xs border border-[#d8a2a2] px-3 py-1.5 text-xs font-bold text-[#252525] shadow-xs hover:bg-[#ffdcdc]/30 transition-all cursor-pointer"
       >
         Reset view
       </button>

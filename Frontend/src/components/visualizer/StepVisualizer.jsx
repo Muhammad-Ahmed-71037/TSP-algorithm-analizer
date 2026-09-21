@@ -45,9 +45,9 @@ export default function StepVisualizer({ steps = [], cities = [], onStepChange }
   const atEnd = index === steps.length - 1;
 
   return (
-    <div className="rounded-2xl border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] p-5">
+    <div className="rounded-xl border border-[#E5BEBE] bg-white p-5 shadow-2xs">
       <div className="flex items-center justify-between mb-3">
-        <p className="font-data text-xs font-semibold text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">
+        <p className="font-data text-xs font-bold text-[#1E1E1E] uppercase tracking-wider">
           STEP {index + 1} / {steps.length}
         </p>
         <div className="flex items-center gap-1">
@@ -55,10 +55,10 @@ export default function StepVisualizer({ steps = [], cities = [], onStepChange }
             <button
               key={s}
               onClick={() => setSpeed(s)}
-              className={`px-2 py-1 rounded-md text-xs font-medium ${
+              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
                 speed === s
-                  ? 'bg-[var(--color-dijkstra-soft)] dark:bg-[var(--color-dijkstra-soft-dark)] text-[var(--color-dijkstra)]'
-                  : 'text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]'
+                  ? 'bg-[#8EA66B] text-white font-semibold shadow-2xs'
+                  : 'text-[#66615A] hover:text-[#1E1E1E] hover:bg-[#FFDCDC]/30'
               }`}
             >
               {s}
@@ -67,7 +67,7 @@ export default function StepVisualizer({ steps = [], cities = [], onStepChange }
         </div>
       </div>
 
-      <p className="text-sm leading-relaxed mb-4 min-h-[40px]">{humanizeDescription(step?.description, cities)}</p>
+      <p className="text-xs text-[#252525] leading-relaxed mb-4 min-h-[40px] font-medium">{humanizeDescription(step?.description, cities)}</p>
 
       <div className="flex items-center gap-2">
         <Button variant="outline" size="sm" icon={ChevronLeft} disabled={atStart} onClick={() => setIndex((i) => Math.max(0, i - 1))}>

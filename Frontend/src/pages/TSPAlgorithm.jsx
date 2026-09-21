@@ -116,23 +116,23 @@ function SelectionPanel() {
   return (
     <Card className="p-5 flex flex-col gap-5">
       {/* Mode Switcher */}
-      <div className="flex rounded-xl bg-slate-100 p-1 text-xs font-semibold border border-slate-200/80">
+      <div className="flex rounded-xl bg-[#fff9d6] p-1 text-xs font-semibold border border-[#e5bebe]">
         <button
           onClick={() => setMode('singleDest')}
-          className={`flex-1 py-2 px-2 rounded-lg transition-all text-xs ${
+          className={`flex-1 py-2 px-2 rounded-lg transition-all text-xs font-bold ${
             mode === 'singleDest'
-              ? 'bg-white text-blue-600 shadow-xs font-bold border border-slate-200/60'
-              : 'text-slate-600 hover:text-slate-900 font-medium'
+              ? 'bg-white text-[#1e1e1e] shadow-xs border border-[#d8a2a2]'
+              : 'text-[#4a4a4a] hover:text-[#1e1e1e]'
           }`}
         >
           1 Source & 1 Destination (Corridor)
         </button>
         <button
           onClick={() => setMode('multiDest')}
-          className={`flex-1 py-2 px-2 rounded-lg transition-all text-xs ${
+          className={`flex-1 py-2 px-2 rounded-lg transition-all text-xs font-bold ${
             mode === 'multiDest'
-              ? 'bg-white text-blue-600 shadow-xs font-bold border border-slate-200/60'
-              : 'text-slate-600 hover:text-slate-900 font-medium'
+              ? 'bg-white text-[#1e1e1e] shadow-xs border border-[#d8a2a2]'
+              : 'text-[#4a4a4a] hover:text-[#1e1e1e]'
           }`}
         >
           Custom Multi-City
@@ -142,10 +142,10 @@ function SelectionPanel() {
       <div>
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-blue-600 ring-4 ring-blue-100"></span>
-            <h3 className="font-display font-semibold text-xs uppercase tracking-wider text-slate-700">1. Origin City (Source & Return)</h3>
+            <span className="h-2 w-2 rounded-full bg-[#8ea66b] ring-4 ring-[#eef3e6]"></span>
+            <h3 className="font-bold text-xs uppercase tracking-wider text-[#1e1e1e]">1. Origin City (Source & Return)</h3>
           </div>
-          {startingCity && <span className="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">Selected</span>}
+          {startingCity && <span className="text-[11px] font-bold text-[#2f431a] bg-[#eef3e6] px-2 py-0.5 rounded-md border border-[#8ea66b]">Selected</span>}
         </div>
         <CitySearchSelector mode="single" selected={startingCity} onSelect={selectSource} placeholder="Search origin (e.g. Karachi)..." />
       </div>
@@ -154,10 +154,10 @@ function SelectionPanel() {
         <div>
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-violet-600 ring-4 ring-violet-100"></span>
-              <h3 className="font-display font-semibold text-xs uppercase tracking-wider text-slate-700">2. Target Destination</h3>
+              <span className="h-2 w-2 rounded-full bg-[#d8a2a2] ring-4 ring-[#ffdcdc]"></span>
+              <h3 className="font-bold text-xs uppercase tracking-wider text-[#1e1e1e]">2. Target Destination</h3>
             </div>
-            {destinationCities.length > 0 && <span className="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">Selected</span>}
+            {destinationCities.length > 0 && <span className="text-[11px] font-bold text-[#2f431a] bg-[#eef3e6] px-2 py-0.5 rounded-md border border-[#8ea66b]">Selected</span>}
           </div>
           <CitySearchSelector
             mode="single"
@@ -171,12 +171,12 @@ function SelectionPanel() {
               <button
                 disabled={loadingCorridor}
                 onClick={discoverCorridor}
-                className="w-full flex items-center justify-center gap-2 rounded-xl border border-blue-200/80 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 hover:from-blue-100/80 hover:to-indigo-100/80 text-blue-700 py-2.5 px-3 text-xs font-semibold shadow-xs hover:shadow-sm transition-all duration-200 disabled:opacity-60 cursor-pointer"
+                className="w-full flex items-center justify-center gap-2 rounded-xl border border-[#d8a2a2] bg-white hover:bg-[#ffdcdc]/30 text-[#252525] py-2.5 px-3 text-xs font-bold shadow-xs hover:shadow-sm transition-all duration-200 disabled:opacity-60 cursor-pointer"
               >
-                <Sparkles className="h-3.5 w-3.5 text-blue-600" />
+                <Sparkles className="h-3.5 w-3.5 text-[#8ea66b]" />
                 {loadingCorridor ? 'Analyzing 50,000 cities...' : 'Auto-Discover Intermediate Waypoints'}
               </button>
-              <p className="text-[11px] mt-1.5 text-slate-500 leading-tight">
+              <p className="text-[11px] mt-1.5 text-[#66615a] leading-tight font-medium">
                 Inspects all 50k cities to find natural geographic transit hubs between {startingCity.city} and {destinationCities[destinationCities.length - 1].city}, enabling distinct forward and return paths.
               </p>
             </div>
@@ -186,13 +186,13 @@ function SelectionPanel() {
         <div>
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-violet-600 ring-4 ring-violet-100"></span>
-              <h3 className="font-display font-semibold text-xs uppercase tracking-wider text-slate-700">Destinations ({destinationCities.length})</h3>
+              <span className="h-2 w-2 rounded-full bg-[#d8a2a2] ring-4 ring-[#ffdcdc]"></span>
+              <h3 className="font-bold text-xs uppercase tracking-wider text-[#1e1e1e]">Destinations ({destinationCities.length})</h3>
             </div>
             {destinationCities.length > 0 && (
               <button
                 onClick={() => setDestinationCities([])}
-                className="text-[11px] text-slate-400 hover:text-red-600 transition-colors font-medium"
+                className="text-[11px] text-[#b93838] hover:underline transition-colors font-bold"
               >
                 Clear all
               </button>
@@ -210,27 +210,27 @@ function SelectionPanel() {
       {destinationCities.length > 0 && (
         <div>
           <div className="flex items-center justify-between mb-2">
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <p className="text-xs font-bold text-[#4a4a4a] uppercase tracking-wider">
               Selected Route Stops ({destinationCities.length})
             </p>
             {destinationCities.length > 1 && (
-              <span className="text-[10px] text-slate-400 font-medium">Includes corridor hubs</span>
+              <span className="text-[10px] text-[#66615a] font-semibold">Includes corridor hubs</span>
             )}
           </div>
           <div className="flex flex-wrap gap-1.5 max-h-40 overflow-y-auto scroll-thin">
             {destinationCities.map((city, idx) => (
               <span
                 key={city.id}
-                className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium border transition-colors ${
+                className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-bold border transition-colors ${
                   idx === destinationCities.length - 1
-                    ? 'bg-blue-50 border-blue-200 text-blue-700 font-semibold'
-                    : 'bg-slate-50 border-slate-200 text-slate-700'
+                    ? 'bg-[#ffdcdc] border-[#d8a2a2] text-[#252525]'
+                    : 'bg-white border-[#e5bebe] text-[#4a4a4a]'
                 }`}
               >
                 <span>{city.city}, {city.country}</span>
                 <button
                   onClick={() => toggleDestination(city)}
-                  className="hover:text-red-600 text-slate-400 ml-0.5"
+                  className="hover:text-[#b93838] text-[#77716a] ml-0.5"
                   aria-label={`Remove ${city.city}`}
                 >
                   ×
@@ -325,21 +325,21 @@ export default function TSPAlgorithm({ algorithm }) {
 
       {/* Algorithm Specs Ribbon */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
-        <div className="rounded-md border border-[#e2e8f0] bg-white p-3 shadow-xs">
-          <p className="text-[10px] text-[#637083] uppercase font-bold tracking-wider">Paradigm</p>
-          <p className="text-xs font-semibold text-[#1a2332] mt-0.5">{config.paradigm}</p>
+        <div className="rounded-xl border border-[#e5bebe] bg-white p-3.5 shadow-xs">
+          <p className="text-[10px] text-[#66615a] uppercase font-bold tracking-wider">Paradigm</p>
+          <p className="text-xs font-bold text-[#1e1e1e] mt-0.5">{config.paradigm}</p>
         </div>
-        <div className="rounded-md border border-[#e2e8f0] bg-white p-3 shadow-xs">
-          <p className="text-[10px] text-[#637083] uppercase font-bold tracking-wider">Time Complexity</p>
-          <p className="text-xs font-mono font-semibold text-[#1a2332] mt-0.5">{config.complexity}</p>
+        <div className="rounded-xl border border-[#e5bebe] bg-white p-3.5 shadow-xs">
+          <p className="text-[10px] text-[#66615a] uppercase font-bold tracking-wider">Time Complexity</p>
+          <p className="text-xs font-mono font-bold text-[#1e1e1e] mt-0.5">{config.complexity}</p>
         </div>
-        <div className="rounded-md border border-[#e2e8f0] bg-white p-3 shadow-xs">
-          <p className="text-[10px] text-[#637083] uppercase font-bold tracking-wider">Space Complexity</p>
-          <p className="text-xs font-mono font-semibold text-[#1a2332] mt-0.5">{config.spaceComplexity}</p>
+        <div className="rounded-xl border border-[#e5bebe] bg-white p-3.5 shadow-xs">
+          <p className="text-[10px] text-[#66615a] uppercase font-bold tracking-wider">Space Complexity</p>
+          <p className="text-xs font-mono font-bold text-[#1e1e1e] mt-0.5">{config.spaceComplexity}</p>
         </div>
-        <div className="rounded-md border border-[#e2e8f0] bg-white p-3 shadow-xs">
-          <p className="text-[10px] text-[#637083] uppercase font-bold tracking-wider">Optimality Guarantee</p>
-          <p className="text-xs font-medium text-[#1a2332] mt-0.5 leading-snug">{config.optimality}</p>
+        <div className="rounded-xl border border-[#e5bebe] bg-white p-3.5 shadow-xs">
+          <p className="text-[10px] text-[#66615a] uppercase font-bold tracking-wider">Optimality Guarantee</p>
+          <p className="text-xs font-bold text-[#1e1e1e] mt-0.5 leading-snug">{config.optimality}</p>
         </div>
       </div>
 
@@ -354,24 +354,24 @@ export default function TSPAlgorithm({ algorithm }) {
             />
           ) : (
             <Card className="overflow-hidden">
-              <div className="flex items-center justify-between p-3 border-b border-[var(--color-border-subtle)] bg-slate-50/50">
-                <div className="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200/80">
+              <div className="flex items-center justify-between p-3 border-b border-[#e5bebe] bg-[#fffdf5]">
+                <div className="flex gap-1 bg-[#fff9d6] p-1 rounded-xl border border-[#e5bebe]">
                   <button
                     onClick={() => setView('map')}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
                       view === 'map'
-                        ? 'bg-white text-blue-600 shadow-xs font-bold border border-slate-200/60'
-                        : 'text-slate-600 hover:text-slate-900 font-medium'
+                        ? 'bg-white text-[#1e1e1e] shadow-xs border border-[#d8a2a2]'
+                        : 'text-[#4a4a4a] hover:text-[#1e1e1e]'
                     }`}
                   >
                     Map View
                   </button>
                   <button
                     onClick={() => setView('graph')}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
                       view === 'graph'
-                        ? 'bg-white text-blue-600 shadow-xs font-bold border border-slate-200/60'
-                        : 'text-slate-600 hover:text-slate-900 font-medium'
+                        ? 'bg-white text-[#1e1e1e] shadow-xs border border-[#d8a2a2]'
+                        : 'text-[#4a4a4a] hover:text-[#1e1e1e]'
                     }`}
                   >
                     Topological Graph
@@ -379,10 +379,10 @@ export default function TSPAlgorithm({ algorithm }) {
                 </div>
                 {graphMeta && (
                   <div className="hidden sm:flex items-center gap-2 text-xs font-data">
-                    <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200/80 text-slate-700 font-medium shadow-2xs">{graphMeta.vertices} vertices</span>
-                    <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200/80 text-slate-700 font-medium shadow-2xs">{graphMeta.edges} edges</span>
-                    <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200/80 text-slate-700 font-medium shadow-2xs">avg deg {graphMeta.averageDegree}</span>
-                    <span className="px-2.5 py-1 rounded-md bg-white border border-slate-200/80 text-slate-700 font-medium shadow-2xs">density {graphMeta.density}</span>
+                    <span className="px-2.5 py-1 rounded-md bg-white border border-[#e5bebe] text-[#252525] font-bold shadow-2xs">{graphMeta.vertices} vertices</span>
+                    <span className="px-2.5 py-1 rounded-md bg-white border border-[#e5bebe] text-[#252525] font-bold shadow-2xs">{graphMeta.edges} edges</span>
+                    <span className="px-2.5 py-1 rounded-md bg-white border border-[#e5bebe] text-[#252525] font-bold shadow-2xs">avg deg {graphMeta.averageDegree}</span>
+                    <span className="px-2.5 py-1 rounded-md bg-white border border-[#e5bebe] text-[#252525] font-bold shadow-2xs">density {graphMeta.density}</span>
                   </div>
                 )}
               </div>
@@ -405,7 +405,7 @@ export default function TSPAlgorithm({ algorithm }) {
                   />
                 )}
               </div>
-              <p className="px-4 py-2.5 text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] border-t border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)]">
+              <p className="px-4 py-2.5 text-xs text-[#66615a] border-t border-[#e5bebe] font-medium">
                 Edges represent approximate geographic distance calculated from city coordinates using the Haversine formula (straight-line distance, not road/travel distance). The graph is generated using a nearest-neighbor strategy.
               </p>
             </Card>
@@ -415,26 +415,26 @@ export default function TSPAlgorithm({ algorithm }) {
 
       {/* Execution and Results Card */}
       <Card className="p-6 mb-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[var(--color-border-subtle)]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#e5bebe]">
           <div>
-            <p className="text-xs text-slate-500 uppercase font-bold tracking-wider">Tour Sequence Configured</p>
+            <p className="text-xs text-[#4a4a4a] uppercase font-bold tracking-wider">Tour Sequence Configured</p>
             <div className="flex flex-wrap items-center gap-2 text-sm font-medium mt-1.5">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-50 border border-blue-200 text-blue-800 font-semibold text-xs">
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-600"></span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#eef3e6] border border-[#8ea66b] text-[#2f431a] font-bold text-xs">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#8ea66b]"></span>
                 {startingCity ? `${startingCity.city}, ${startingCity.country}` : 'No Source Selected'}
               </span>
-              <ArrowRight className="h-3.5 w-3.5 text-slate-400" />
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 font-semibold text-xs">
+              <ArrowRight className="h-3.5 w-3.5 text-[#77716a]" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#ffdcdc] border border-[#e5bebe] text-[#252525] font-bold text-xs">
                 {destinationCities.length} Destination{destinationCities.length === 1 ? '' : 's'}
               </span>
-              <ArrowRight className="h-3.5 w-3.5 text-slate-400" />
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-50 border border-blue-200 text-blue-800 font-semibold text-xs">
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-600"></span>
+              <ArrowRight className="h-3.5 w-3.5 text-[#77716a]" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#eef3e6] border border-[#8ea66b] text-[#2f431a] font-bold text-xs">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#8ea66b]"></span>
                 {startingCity ? `${startingCity.city} (Return)` : 'Source (Return)'}
               </span>
             </div>
           </div>
-          <Button size="lg" icon={running[algorithm] ? Clock3 : Play} loading={running[algorithm]} onClick={run} className="shadow-md hover:shadow-lg font-semibold">
+          <Button size="lg" icon={running[algorithm] ? Clock3 : Play} loading={running[algorithm]} onClick={run} className="shadow-xs font-bold">
             Execute {config.title}
           </Button>
         </div>
@@ -443,46 +443,46 @@ export default function TSPAlgorithm({ algorithm }) {
           <div className="mt-6 space-y-6">
             {/* Top Metrics Row */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <div className="rounded-md bg-white border border-[#e2e8f0] p-3.5 shadow-xs">
+              <div className="rounded-xl bg-white border border-[#e5bebe] p-3.5 shadow-xs">
                 <div className="flex items-center justify-between">
-                  <p className="text-[10px] text-[#637083] font-bold uppercase tracking-wider">Total Tour Distance</p>
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#2563eb]" />
+                  <p className="text-[10px] text-[#66615a] font-bold uppercase tracking-wider">Total Tour Distance</p>
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#8ea66b]" />
                 </div>
-                <p className="font-mono text-xl sm:text-2xl font-bold mt-1.5 text-[#0f172a]">
-                  {activeResult.result.totalDistance.toLocaleString()} <span className="text-xs font-normal text-[#64748b]">km</span>
+                <p className="font-mono text-xl sm:text-2xl font-bold mt-1.5 text-[#1e1e1e]">
+                  {activeResult.result.totalDistance.toLocaleString()} <span className="text-xs font-normal text-[#66615a]">km</span>
                 </p>
               </div>
 
-              <div className="rounded-md bg-white border border-[#e2e8f0] p-3.5 shadow-xs">
+              <div className="rounded-xl bg-white border border-[#e5bebe] p-3.5 shadow-xs">
                 <div className="flex items-center justify-between">
-                  <p className="text-[10px] text-[#637083] font-bold uppercase tracking-wider">
+                  <p className="text-[10px] text-[#66615a] font-bold uppercase tracking-wider">
                     {algorithm === 'aiTSP' ? 'AI API Latency' : 'Execution Time'}
                   </p>
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#059669]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#8ea66b]" />
                 </div>
-                <p className="font-mono text-xl sm:text-2xl font-bold mt-1.5 text-[#0f172a]">
-                  {activeResult.metrics.executionTimeMs ?? activeResult.metrics.requestTimeMs} <span className="text-xs font-normal text-[#64748b]">ms</span>
+                <p className="font-mono text-xl sm:text-2xl font-bold mt-1.5 text-[#1e1e1e]">
+                  {activeResult.metrics.executionTimeMs ?? activeResult.metrics.requestTimeMs} <span className="text-xs font-normal text-[#66615a]">ms</span>
                 </p>
               </div>
 
-              <div className="rounded-md bg-white border border-[#e2e8f0] p-3.5 shadow-xs">
+              <div className="rounded-xl bg-white border border-[#e5bebe] p-3.5 shadow-xs">
                 <div className="flex items-center justify-between">
-                  <p className="text-[10px] text-[#637083] font-bold uppercase tracking-wider">Tour Nodes</p>
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#7c3aed]" />
+                  <p className="text-[10px] text-[#66615a] font-bold uppercase tracking-wider">Tour Nodes</p>
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#d8a2a2]" />
                 </div>
-                <p className="font-mono text-xl sm:text-2xl font-bold mt-1.5 text-[#0f172a]">
-                  {route.length} <span className="text-xs font-normal text-[#64748b]">stops</span>
+                <p className="font-mono text-xl sm:text-2xl font-bold mt-1.5 text-[#1e1e1e]">
+                  {route.length} <span className="text-xs font-normal text-[#66615a]">stops</span>
                 </p>
               </div>
 
-              <div className="rounded-md bg-white border border-[#e2e8f0] p-3.5 shadow-xs">
+              <div className="rounded-xl bg-white border border-[#e5bebe] p-3.5 shadow-xs">
                 <div className="flex items-center justify-between">
-                  <p className="text-[10px] text-[#637083] font-bold uppercase tracking-wider">
+                  <p className="text-[10px] text-[#66615a] font-bold uppercase tracking-wider">
                     {algorithm === 'dynamicProgramming' ? 'DP States' : algorithm === 'greedy' ? 'Greedy Decisions' : 'Calculated Legs'}
                   </p>
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#d97706]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#d8a2a2]" />
                 </div>
-                <p className="font-mono text-xl sm:text-2xl font-bold mt-1.5 text-[#0f172a]">
+                <p className="font-mono text-xl sm:text-2xl font-bold mt-1.5 text-[#1e1e1e]">
                   {activeResult.metrics.statesComputed ?? activeResult.metrics.insertionDecisions ?? activeResult.metrics.shortestPathsCalculated ?? activeResult.metrics.destinations}
                 </p>
               </div>
@@ -490,26 +490,26 @@ export default function TSPAlgorithm({ algorithm }) {
 
             {/* Complete Tour Sequence */}
             <div>
-              <p className="text-xs font-bold text-[#637083] uppercase tracking-wider mb-2">
+              <p className="text-xs font-bold text-[#4a4a4a] uppercase tracking-wider mb-2">
                 Resolved Closed Tour Sequence
               </p>
-              <div className="p-3 rounded-md border border-[#e2e8f0] bg-white">
+              <div className="p-3 rounded-xl border border-[#e5bebe] bg-white">
                 <div className="flex flex-wrap items-center gap-1.5">
                   {route.map((cityId, idx) => {
                     const isOrigin = idx === 0 || idx === route.length - 1;
                     return (
                       <span key={idx} className="flex items-center gap-1.5">
                         <span
-                          className={`px-2 py-1 rounded text-xs font-mono font-medium border ${
+                          className={`px-2.5 py-1 rounded-lg text-xs font-mono font-bold border ${
                             isOrigin
-                              ? 'bg-[#eff6ff] border-[#bfdbfe] text-[#1d4ed8] font-bold'
-                              : 'bg-[#f8fafc] border-[#e2e8f0] text-[#1a2332]'
+                              ? 'bg-[#eef3e6] border-[#8ea66b] text-[#2f431a]'
+                              : 'bg-[#ffdcdc] border-[#e5bebe] text-[#252525]'
                           }`}
                         >
                           {cityName(cityId)}
-                          <span className="text-[10px] text-[#64748b] ml-1">({cityCountry(cityId)})</span>
+                          <span className="text-[10px] text-[#66615a] ml-1">({cityCountry(cityId)})</span>
                         </span>
-                        {idx < route.length - 1 && <ArrowRight className="h-3 w-3 text-[#94a3b8]" />}
+                        {idx < route.length - 1 && <ArrowRight className="h-3 w-3 text-[#77716a]" />}
                       </span>
                     );
                   })}
@@ -520,49 +520,49 @@ export default function TSPAlgorithm({ algorithm }) {
             {/* Leg-by-Leg Tour Breakdown */}
             {activeResult.result.legs && activeResult.result.legs.length > 0 && (
               <div>
-                <p className="text-xs font-bold text-[#637083] uppercase tracking-wider mb-2">
+                <p className="text-xs font-bold text-[#4a4a4a] uppercase tracking-wider mb-2">
                   Leg-by-Leg Route Decomposition &amp; Independent Return Leg
                 </p>
-                <div className="overflow-x-auto rounded-md border border-[#e2e8f0] bg-white">
+                <div className="overflow-x-auto rounded-xl border border-[#e5bebe] bg-white">
                   <table className="w-full text-left text-xs">
-                    <thead className="bg-[#f8fafc] text-[#637083] border-b border-[#e2e8f0] text-[10px] uppercase font-bold tracking-wider">
+                    <thead className="bg-[#fffdf5] text-[#4a4a4a] border-b border-[#e5bebe] text-[10px] uppercase font-bold tracking-wider">
                       <tr>
-                        <th className="px-3 py-2 w-10">Leg</th>
-                        <th className="px-3 py-2">Departure</th>
-                        <th className="px-3 py-2">Arrival</th>
-                        <th className="px-3 py-2">Segment Classification</th>
-                        <th className="px-3 py-2 text-right font-mono">Distance</th>
+                        <th className="px-3 py-2.5 w-10">Leg</th>
+                        <th className="px-3 py-2.5">Departure</th>
+                        <th className="px-3 py-2.5">Arrival</th>
+                        <th className="px-3 py-2.5">Segment Classification</th>
+                        <th className="px-3 py-2.5 text-right font-mono">Distance</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#f1f5f9]">
+                    <tbody className="divide-y divide-[#f0d5d5]">
                       {activeResult.result.legs.map((leg, idx) => (
                         <tr
                           key={idx}
-                          className={`hover:bg-[#f8fafc] transition-colors ${
-                            leg.isReturnLeg ? 'bg-[#eff6ff]/30' : ''
+                          className={`hover:bg-[#fff9d6]/40 transition-colors ${
+                            leg.isReturnLeg ? 'bg-[#eef3e6]/40' : ''
                           }`}
                         >
-                          <td className="px-3 py-2 font-mono text-[#637083]">#{idx + 1}</td>
-                          <td className="px-3 py-2 font-semibold text-[#0f172a]">{cityName(leg.source)}</td>
-                          <td className="px-3 py-2 font-semibold text-[#0f172a]">{cityName(leg.destination)}</td>
+                          <td className="px-3 py-2 font-mono text-[#66615a] font-bold">#{idx + 1}</td>
+                          <td className="px-3 py-2 font-bold text-[#1e1e1e]">{cityName(leg.source)}</td>
+                          <td className="px-3 py-2 font-bold text-[#1e1e1e]">{cityName(leg.destination)}</td>
                           <td className="px-3 py-2">
                             {leg.isReturnLeg ? (
-                              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-bold uppercase bg-[#eff6ff] text-[#1d4ed8] border border-[#bfdbfe]">
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold uppercase bg-[#eef3e6] text-[#2f431a] border border-[#8ea66b]">
                                 <CornerDownLeft className="h-3 w-3" /> Independent Return Leg
                               </span>
                             ) : (
-                              <span className="inline-flex items-center gap-1 text-[11px] text-[#475569]">
-                                <Route className="h-3 w-3 text-[#64748b]" /> Forward Traversal
+                              <span className="inline-flex items-center gap-1 text-[11px] text-[#4a4a4a] font-medium">
+                                <Route className="h-3 w-3 text-[#8ea66b]" /> Forward Traversal
                               </span>
                             )}
                             {leg.intermediateNodes && leg.intermediateNodes.length > 0 && (
-                              <p className="text-[11px] text-[#64748b] mt-0.5">
+                              <p className="text-[11px] text-[#66615a] mt-0.5 font-medium">
                                 Via: {leg.intermediateNodes.map(cityName).join(' → ')}
                               </p>
                             )}
                           </td>
-                          <td className="px-3 py-2 text-right font-mono font-semibold text-[#0f172a]">
-                            {leg.distance.toLocaleString()} <span className="text-[10px] text-[#64748b] font-normal">km</span>
+                          <td className="px-3 py-2 text-right font-mono font-bold text-[#1e1e1e]">
+                            {leg.distance.toLocaleString()} <span className="text-[10px] text-[#66615a] font-normal">km</span>
                           </td>
                         </tr>
                       ))}
@@ -574,9 +574,9 @@ export default function TSPAlgorithm({ algorithm }) {
 
             {/* AI Reasoning (for AI TSP Solver) */}
             {algorithm === 'aiTSP' && activeResult.reasoning && (
-              <div className="p-4 rounded-xl bg-[var(--color-ai-soft)] dark:bg-[var(--color-ai-soft-dark)] text-sm">
-                <p className="font-semibold text-xs text-[var(--color-ai)] mb-1 uppercase tracking-wider">AI Route Planner Reasoning</p>
-                <p className="leading-relaxed">{activeResult.reasoning}</p>
+              <div className="p-4 rounded-xl bg-[#FFF9D6] border border-[#E5BEBE] text-xs text-[#252525] shadow-2xs">
+                <p className="font-bold text-xs text-[#1E1E1E] mb-1.5 uppercase tracking-wider">AI Route Planner Reasoning</p>
+                <p className="leading-relaxed font-medium">{activeResult.reasoning}</p>
               </div>
             )}
 
@@ -585,15 +585,15 @@ export default function TSPAlgorithm({ algorithm }) {
               <Button variant="secondary" size="sm" icon={Sparkles} loading={explaining} onClick={handleExplain}>
                 Explain Tour with AI
               </Button>
-              <p className="text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">
+              <p className="text-xs text-[#66615A] font-medium">
                 AI analyzes real measured timings and Haversine distances deterministically generated.
               </p>
             </div>
 
             {/* AI Explanation Display */}
             {explanation && (
-              <div className="rounded-xl border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] bg-[var(--color-surface-2)] dark:bg-[var(--color-surface-2-dark)] p-5 text-sm leading-relaxed whitespace-pre-wrap">
-                <div className="flex items-center gap-2 mb-2 font-semibold text-[var(--color-ai)]">
+              <div className="rounded-xl border border-[#E5BEBE] bg-[#FFF9D6] p-5 text-xs text-[#252525] leading-relaxed whitespace-pre-wrap font-medium shadow-2xs">
+                <div className="flex items-center gap-2 mb-2 font-bold text-sm text-[#8EA66B]">
                   <Sparkles className="h-4 w-4" /> AI Pedagogical Analysis
                 </div>
                 {explanation}

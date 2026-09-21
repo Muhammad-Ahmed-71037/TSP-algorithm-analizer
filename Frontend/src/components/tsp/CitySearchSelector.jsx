@@ -98,16 +98,16 @@ export default function CitySearchSelector({
   return (
     <div ref={containerRef} className="relative">
       {mode === 'single' && selected ? (
-        <div className="flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50/70 dark:bg-blue-950/30 px-3.5 py-2.5 shadow-2xs">
+        <div className="flex items-center justify-between rounded-xl border border-[#8ea66b] bg-[#eef3e6] px-3.5 py-2.5 shadow-2xs">
           <div className="flex items-center gap-2.5 text-sm">
-            <div className="h-6 w-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-semibold shadow-2xs">
+            <div className="h-6 w-6 rounded-full bg-[#8ea66b] text-white flex items-center justify-center text-xs font-bold shadow-2xs">
               <Check className="h-3.5 w-3.5" />
             </div>
             <div>
-              <span className="font-semibold text-blue-950 dark:text-blue-200 block text-xs">
+              <span className="font-bold text-[#1e1e1e] block text-xs">
                 {selected.city}, {selected.country}
               </span>
-              <span className="text-[10px] text-blue-600 dark:text-blue-400 font-mono">
+              <span className="text-[10px] text-[#4a4a4a] font-mono font-medium">
                 {selected.lat.toFixed(2)}°, {selected.lng.toFixed(2)}°
               </span>
             </div>
@@ -115,14 +115,14 @@ export default function CitySearchSelector({
           <button
             onClick={() => onSelect?.(null)}
             aria-label="Clear starting city"
-            className="p-1 rounded-md text-blue-500 hover:text-blue-800 hover:bg-blue-100/60 transition-colors"
+            className="p-1 rounded-md text-[#66615a] hover:text-[#b93838] hover:bg-[#ffdcdc] transition-colors"
           >
             <X className="h-4 w-4" />
           </button>
         </div>
       ) : (
         <div className="relative group">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--color-ink-muted)] group-focus-within:text-[var(--color-primary)] transition-colors" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#66615a] group-focus-within:text-[#8ea66b] transition-colors" />
           <input
             value={query}
             onChange={(e) => {
@@ -132,10 +132,10 @@ export default function CitySearchSelector({
             onFocus={() => setOpen(true)}
             onKeyDown={handleKeyDown}
             placeholder={placeholder}
-            className="w-full rounded-xl border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] bg-white dark:bg-[var(--color-surface-dark)] pl-10 pr-10 py-2.5 text-xs sm:text-sm text-[var(--color-ink)] dark:text-[var(--color-ink-dark)] placeholder-[var(--color-ink-muted)]/70 shadow-2xs outline-none transition-all duration-150 focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/15"
+            className="w-full rounded-xl border border-[#e5bebe] bg-white pl-10 pr-10 py-2.5 text-xs sm:text-sm text-[#252525] placeholder-[#77716a] shadow-2xs outline-none transition-all duration-150 focus:border-[#8ea66b] focus:ring-2 focus:ring-[#8ea66b]/20"
           />
           {loading && (
-            <Loader2 className="absolute right-3.5 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-[var(--color-primary)]" />
+            <Loader2 className="absolute right-3.5 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-[#8ea66b]" />
           )}
         </div>
       )}
@@ -152,14 +152,14 @@ export default function CitySearchSelector({
 
 function ResultsDropdown({ results, loading, activeIndex, selectedIds, onPick, mode }) {
   return (
-    <div className="absolute z-20 mt-1 w-full max-h-72 overflow-y-auto scroll-thin rounded-xl border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] shadow-lg">
+    <div className="absolute z-20 mt-1 w-full max-h-72 overflow-y-auto scroll-thin rounded-xl border border-[#e5bebe] bg-white shadow-lg">
       {loading && results.length === 0 && (
-        <div className="flex items-center gap-2 px-3 py-3 text-sm text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">
-          <Loader2 className="h-4 w-4 animate-spin" /> Searching...
+        <div className="flex items-center gap-2 px-3 py-3 text-sm text-[#4a4a4a]">
+          <Loader2 className="h-4 w-4 animate-spin text-[#8ea66b]" /> Searching...
         </div>
       )}
       {!loading && results.length === 0 && (
-        <div className="px-3 py-3 text-sm text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">No cities found.</div>
+        <div className="px-3 py-3 text-sm text-[#66615a]">No cities found.</div>
       )}
       {results.map((c, i) => {
         const isSelected = selectedIds.has(c.id);
@@ -167,17 +167,17 @@ function ResultsDropdown({ results, loading, activeIndex, selectedIds, onPick, m
           <button
             key={c.id}
             onClick={() => onPick(c)}
-            className={`w-full flex items-center justify-between px-3 py-2.5 text-left text-sm border-b last:border-b-0 border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] ${
-              i === activeIndex ? 'bg-[var(--color-surface-2)] dark:bg-[var(--color-surface-2-dark)]' : 'hover:bg-[var(--color-surface-2)] dark:hover:bg-[var(--color-surface-2-dark)]'
+            className={`w-full flex items-center justify-between px-3 py-2.5 text-left text-sm border-b last:border-b-0 border-[#f0d5d5] ${
+              i === activeIndex ? 'bg-[#fff9d6]' : 'hover:bg-[#fff9d6]'
             }`}
           >
             <div>
-              <p className="font-medium">{c.city}</p>
-              <p className="text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">
+              <p className="font-bold text-[#1e1e1e]">{c.city}</p>
+              <p className="text-xs text-[#4a4a4a]">
                 {c.country} · {c.lat.toFixed(3)}°, {c.lng.toFixed(3)}°
               </p>
             </div>
-            {mode === 'multi' && (isSelected ? <Check className="h-4 w-4 text-[var(--color-dijkstra)]" /> : <span className="text-xs text-[var(--color-dijkstra)]">Add</span>)}
+            {mode === 'multi' && (isSelected ? <Check className="h-4 w-4 text-[#8ea66b]" /> : <span className="text-xs font-bold text-[#8ea66b]">Add</span>)}
           </button>
         );
       })}

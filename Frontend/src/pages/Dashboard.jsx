@@ -120,8 +120,8 @@ export default function Dashboard() {
       {/* Overview Title matching the reference dashboard */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-[#0f172a]">Overview</h1>
-          <p className="text-xs sm:text-sm text-[#64748b] mt-1">
+          <h1 className="text-3xl font-bold tracking-tight text-[#1e1e1e]">Overview</h1>
+          <p className="text-xs sm:text-sm text-[#4a4a4a] mt-1 font-medium">
             Algorithmic benchmark metrics, dataset telemetry, and tour optimization analytics.
           </p>
         </div>
@@ -139,7 +139,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Top Grid: Two StatCards on Left, Growth Area Chart on Right (Exact layout of reference image) */}
+      {/* Top Grid: Two StatCards on Left, Growth Area Chart on Right */}
       <div className="grid lg:grid-cols-[400px_1fr] gap-6">
         {/* Left Column: StatCards with Sparklines */}
         <div className="flex flex-col gap-6">
@@ -166,15 +166,15 @@ export default function Dashboard() {
           />
         </div>
 
-        {/* Right Column: Growth Area Chart (Like 'Revenue Growth' in the reference image) */}
+        {/* Right Column: Growth Area Chart */}
         <Card className="p-6 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="font-bold text-base text-[#0f172a]">Algorithmic Complexity Growth</h3>
-              <p className="text-xs text-[#64748b] mt-0.5">Empirical state calculations vs input vertices V</p>
+              <h3 className="font-bold text-base text-[#1e1e1e]">Algorithmic Complexity Growth</h3>
+              <p className="text-xs text-[#4a4a4a] mt-0.5">Empirical state calculations vs input vertices V</p>
             </div>
-            <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#16a34a] bg-[#ecfdf5] px-2.5 py-1 rounded-lg border border-[#a7f3d0]">
-              <TrendingUp className="h-3.5 w-3.5" /> O(V²) Bitonic Bound
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-[#2f431a] bg-[#eef3e6] px-2.5 py-1 rounded-lg border border-[#8ea66b]">
+              <TrendingUp className="h-3.5 w-3.5 text-[#8ea66b]" /> O(V²) Bitonic Bound
             </span>
           </div>
 
@@ -183,26 +183,27 @@ export default function Dashboard() {
               <AreaChart data={GROWTH_DATA} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="growthArea" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.35} />
-                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.0} />
+                    <stop offset="5%" stopColor="#8ea66b" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="#8ea66b" stopOpacity={0.0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e8eef5" vertical={false} />
-                <XAxis dataKey="step" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0d5d5" vertical={false} />
+                <XAxis dataKey="step" tick={{ fontSize: 11, fill: '#4a4a4a' }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#4a4a4a' }} axisLine={false} tickLine={false} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: '#ffffff',
-                    borderColor: '#e2e8f0',
+                    borderColor: '#e5bebe',
                     borderRadius: '0.75rem',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+                    boxShadow: '0 4px 12px rgba(42,36,36,0.08)',
                     fontSize: '12px',
+                    color: '#252525',
                   }}
                 />
                 <Area
                   type="monotone"
                   dataKey="complexity"
-                  stroke="#3b82f6"
+                  stroke="#8ea66b"
                   strokeWidth={3}
                   fillOpacity={1}
                   fill="url(#growthArea)"
@@ -211,60 +212,61 @@ export default function Dashboard() {
             </ResponsiveContainer>
           </div>
 
-          <div className="flex items-center justify-between text-xs text-[#64748b] pt-3 border-t border-[#f1f5f9]">
+          <div className="flex items-center justify-between text-xs text-[#66615a] pt-3 border-t border-[#f0d5d5] font-semibold">
             <span>Low Latency: V &lt; 15</span>
-            <span className="font-mono text-[#0f172a] font-medium">Subproblem Cache: Active</span>
+            <span className="font-mono text-[#1e1e1e] font-bold">Subproblem Cache: Active</span>
             <span>Exponential Bound: V &gt; 30</span>
           </div>
         </Card>
       </div>
 
-      {/* Bottom Grid: Bar Chart on Left, Solvers Table on Right (Exact layout of reference image) */}
+      {/* Bottom Grid: Bar Chart on Left, Solvers Table on Right */}
       <div className="grid lg:grid-cols-[400px_1fr] gap-6">
-        {/* Left Column: Bar Chart (Like 'MRR' in reference image) */}
+        {/* Left Column: Bar Chart */}
         <Card className="p-6 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="font-bold text-base text-[#0f172a]">Execution Latency (ms)</h3>
-              <p className="text-xs text-[#64748b] mt-0.5">High-precision hrtime benchmarking</p>
+              <h3 className="font-bold text-base text-[#1e1e1e]">Execution Latency (ms)</h3>
+              <p className="text-xs text-[#4a4a4a] mt-0.5">High-precision hrtime benchmarking</p>
             </div>
-            <span className="text-xs font-mono font-semibold text-[#2563eb]">hrtime (ns)</span>
+            <span className="text-xs font-mono font-bold text-[#8ea66b]">hrtime (ns)</span>
           </div>
 
           <div className="h-60 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={RUNTIME_BAR_DATA} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e8eef5" vertical={false} />
-                <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0d5d5" vertical={false} />
+                <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#4a4a4a' }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#4a4a4a' }} axisLine={false} tickLine={false} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: '#ffffff',
-                    borderColor: '#e2e8f0',
+                    borderColor: '#e5bebe',
                     borderRadius: '0.75rem',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+                    boxShadow: '0 4px 12px rgba(42,36,36,0.08)',
                     fontSize: '12px',
+                    color: '#252525',
                   }}
                 />
-                <Bar dataKey="time" fill="#3b82f6" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="time" fill="#8ea66b" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
 
-          <div className="flex items-center justify-between text-xs text-[#64748b] pt-3 border-t border-[#f1f5f9]">
+          <div className="flex items-center justify-between text-xs text-[#66615a] pt-3 border-t border-[#f0d5d5] font-semibold">
             <span>Fastest: Dijkstra SSSP</span>
-            <span className="text-[#059669] font-medium">Verified Real Distances</span>
+            <span className="text-[#2f431a] font-bold">Verified Real Distances</span>
           </div>
         </Card>
 
-        {/* Right Column: Clean Table (Like 'Recent Activity' in reference image) */}
+        {/* Right Column: Clean Table */}
         <Card className="p-6 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="font-bold text-base text-[#0f172a]">Recent TSP Solvers</h3>
-              <p className="text-xs text-[#64748b] mt-0.5">Independent algorithmic paradigms &amp; complexity classification</p>
+              <h3 className="font-bold text-base text-[#1e1e1e]">Recent TSP Solvers</h3>
+              <p className="text-xs text-[#4a4a4a] mt-0.5">Independent algorithmic paradigms &amp; complexity classification</p>
             </div>
-            <Link to="/compare" className="text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8]">
+            <Link to="/compare" className="text-xs font-bold text-[#8ea66b] hover:text-[#7a9159]">
               View Full Benchmark →
             </Link>
           </div>
@@ -272,7 +274,7 @@ export default function Dashboard() {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-[#e2e8f0] text-[#64748b] text-[10px] uppercase font-bold tracking-wider">
+                <tr className="border-b border-[#e5bebe] text-[#4a4a4a] text-[10px] uppercase font-bold tracking-wider">
                   <th className="pb-3">Algorithm</th>
                   <th className="pb-3">Paradigm</th>
                   <th className="pb-3">Time Complexity</th>
@@ -280,22 +282,22 @@ export default function Dashboard() {
                   <th className="pb-3 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#f1f5f9]">
+              <tbody className="divide-y divide-[#f0d5d5]">
                 {ALGORITHMS.map((algo) => (
-                  <tr key={algo.key} className="hover:bg-[#f8fafc] transition-colors">
-                    <td className="py-3 font-semibold text-[#0f172a] flex items-center gap-2">
+                  <tr key={algo.key} className="hover:bg-[#fff9d6]/40 transition-colors">
+                    <td className="py-3 font-bold text-[#1e1e1e] flex items-center gap-2">
                       <algo.icon className={`h-4 w-4 ${algoStyle(algo.tone).text}`} />
                       <span>{algo.name}</span>
                     </td>
-                    <td className="py-3 text-[#475569]">{algo.paradigm}</td>
-                    <td className="py-3 font-mono font-semibold text-[#0f172a]">{algo.complexity}</td>
+                    <td className="py-3 text-[#4a4a4a] font-medium">{algo.paradigm}</td>
+                    <td className="py-3 font-mono font-bold text-[#1e1e1e]">{algo.complexity}</td>
                     <td className="py-3">
                       <Badge tone={algo.tone}>{algo.badge}</Badge>
                     </td>
                     <td className="py-3 text-right">
                       <Link
                         to={algo.to}
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8]"
+                        className="inline-flex items-center gap-1 text-xs font-bold text-[#8ea66b] hover:text-[#7a9159]"
                       >
                         Launch <ArrowRight className="h-3 w-3" />
                       </Link>
@@ -306,9 +308,9 @@ export default function Dashboard() {
             </table>
           </div>
 
-          <div className="pt-3 border-t border-[#f1f5f9] flex items-center justify-between text-xs text-[#64748b]">
+          <div className="pt-3 border-t border-[#f0d5d5] flex items-center justify-between text-xs text-[#66615a] font-semibold">
             <span>4 Solvers Evaluated Independently</span>
-            <span className="font-mono text-[#0f172a] font-medium">Dataset: worldcities.csv</span>
+            <span className="font-mono text-[#1e1e1e] font-bold">Dataset: worldcities.csv</span>
           </div>
         </Card>
       </div>

@@ -46,12 +46,12 @@ function QuickAddSearch() {
   return (
     <div>
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#77716A]" />
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search city to add..."
-          className="w-full rounded-md border border-[#e2e8f0] bg-white pl-8 pr-3 py-1.5 text-xs text-[#1a2332] outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors"
+          className="w-full rounded-lg border border-[#E5BEBE] bg-white pl-8 pr-3 py-2 text-xs text-[#252525] placeholder:text-[#77716A] outline-none focus:border-[#8EA66B] focus:ring-1 focus:ring-[#8EA66B] transition-colors"
         />
       </div>
       {matches.length > 0 && (
@@ -64,12 +64,14 @@ function QuickAddSearch() {
                 setQuery('');
                 setMatches([]);
               }}
-              className="w-full flex items-center justify-between rounded-lg px-2.5 py-1.5 text-sm hover:bg-[var(--color-surface-2)] dark:hover:bg-[var(--color-surface-2-dark)]"
+              className="w-full flex items-center justify-between rounded-lg px-2.5 py-1.5 text-xs text-[#252525] hover:bg-[#FFF9D6]/50 transition-colors font-medium"
             >
               <span>
-                {c.city}, <span className="text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">{c.country}</span>
+                {c.city}, <span className="text-[#4A4A4A]">{c.country}</span>
               </span>
-              <span className="text-xs text-[var(--color-dijkstra)]">{selectedIds.has(c.id) ? 'Remove' : 'Add'}</span>
+              <span className={`text-xs font-semibold ${selectedIds.has(c.id) ? 'text-[#c94a4a]' : 'text-[#8EA66B]'}`}>
+                {selectedIds.has(c.id) ? 'Remove' : 'Add'}
+              </span>
             </button>
           ))}
         </div>
@@ -95,13 +97,13 @@ function ConfigPanel() {
   return (
     <Card className="p-5 flex flex-col gap-5">
       <div>
-        <h3 className="font-display font-semibold text-sm mb-2">Quick Select</h3>
+        <h3 className="font-bold text-xs uppercase tracking-wider text-[#1e1e1e] mb-2">Quick Select</h3>
         <div className="flex flex-wrap gap-1.5">
           {QUICK_SELECT_OPTIONS.map((n) => (
             <button
               key={n}
               onClick={() => quickSelect(n)}
-              className="rounded-lg border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] px-2.5 py-1 text-xs font-medium hover:bg-[var(--color-surface-2)] dark:hover:bg-[var(--color-surface-2-dark)]"
+              className="rounded-lg border border-[#d8a2a2] bg-white px-2.5 py-1 text-xs font-bold text-[#252525] hover:bg-[#ffdcdc]/30 transition-colors shadow-2xs"
             >
               Top {n}
             </button>
@@ -110,33 +112,33 @@ function ConfigPanel() {
       </div>
 
       <div>
-        <h3 className="font-display font-semibold text-sm mb-2">Add Cities</h3>
+        <h3 className="font-bold text-xs uppercase tracking-wider text-[#1e1e1e] mb-2">Add Cities</h3>
         <QuickAddSearch />
       </div>
 
       <div>
         <div className="flex items-center justify-between mb-2">
-          <h3 className="font-display font-semibold text-sm">Selected Cities ({selectedCities.length})</h3>
+          <h3 className="font-bold text-xs uppercase tracking-wider text-[#1e1e1e]">Selected Cities ({selectedCities.length})</h3>
           {selectedCities.length > 0 && (
-            <button onClick={clearSelection} className="text-xs text-[var(--color-danger)]">
+            <button onClick={clearSelection} className="text-xs font-bold text-[#b93838] hover:underline">
               Clear all
             </button>
           )}
         </div>
         <div className="flex flex-wrap gap-1.5 max-h-32 overflow-y-auto scroll-thin">
           {selectedCities.length === 0 && (
-            <p className="text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">
+            <p className="text-xs text-[#66615a] font-medium">
               No cities yet. Use Quick Select, search above, or the{' '}
-              <Link to="/dataset" className="text-[var(--color-dijkstra)]">
+              <Link to="/dataset" className="text-[#8ea66b] font-bold underline">
                 Dataset page
               </Link>
               .
             </p>
           )}
           {selectedCities.map((c) => (
-            <span key={c.id} className="flex items-center gap-1 text-xs pl-2 pr-1 py-1 rounded-full bg-[var(--color-surface-2)] dark:bg-[var(--color-surface-2-dark)]">
+            <span key={c.id} className="flex items-center gap-1 text-xs pl-2.5 pr-1.5 py-1 rounded-lg bg-[#ffdcdc] border border-[#e5bebe] text-[#252525] font-bold">
               {c.city}
-              <button onClick={() => toggleCity(c)} aria-label={`Remove ${c.city}`}>
+              <button onClick={() => toggleCity(c)} aria-label={`Remove ${c.city}`} className="hover:text-[#b93838] text-[#77716a]">
                 <X className="h-3 w-3" />
               </button>
             </span>
@@ -145,23 +147,23 @@ function ConfigPanel() {
       </div>
 
       <div>
-        <h3 className="font-display font-semibold text-sm mb-2">Nearest Neighbors (k)</h3>
+        <h3 className="font-bold text-xs uppercase tracking-wider text-[#1e1e1e] mb-2">Nearest Neighbors (k)</h3>
         <div className="flex gap-1.5">
           {K_OPTIONS.map((val) => (
             <button
               key={val}
               onClick={() => setK(val)}
-              className={`flex-1 rounded-lg border px-2 py-1.5 text-sm font-medium ${
+              className={`flex-1 rounded-lg border px-2 py-1.5 text-sm font-bold transition-colors ${
                 k === val
-                  ? 'border-[var(--color-dijkstra)] bg-[var(--color-dijkstra-soft)] dark:bg-[var(--color-dijkstra-soft-dark)] text-[var(--color-dijkstra)]'
-                  : 'border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)]'
+                  ? 'border-[#8ea66b] bg-[#eef3e6] text-[#2f431a] shadow-xs'
+                  : 'border-[#e5bebe] bg-white text-[#4a4a4a] hover:bg-[#fff9d6]'
               }`}
             >
               {val}
             </button>
           ))}
         </div>
-        <p className="text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] mt-2">
+        <p className="text-xs text-[#66615a] font-medium mt-2">
           Each city connects to its {k} geographically nearest selected cities.
         </p>
       </div>
@@ -180,13 +182,13 @@ function SourceDestinationPicker({ needsDestination }) {
   return (
     <div className="grid grid-cols-2 gap-3">
       <div>
-        <label className="text-xs font-semibold text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] mb-1 block">
+        <label className="text-xs font-bold text-[#4A4A4A] uppercase tracking-wider mb-1 block">
           {needsDestination ? 'Source' : 'Start City'}
         </label>
         <select
           value={sourceCity || ''}
           onChange={(e) => setSourceCity(e.target.value)}
-          className="w-full rounded-lg border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] px-3 py-2 text-sm"
+          className="w-full rounded-lg border border-[#E5BEBE] bg-white px-3 py-2 text-xs text-[#252525] outline-none focus:border-[#8EA66B] focus:ring-1 focus:ring-[#8EA66B] font-medium"
         >
           {graph.cities.map((c) => (
             <option key={c.id} value={c.id}>
@@ -197,11 +199,11 @@ function SourceDestinationPicker({ needsDestination }) {
       </div>
       {needsDestination && (
         <div>
-          <label className="text-xs font-semibold text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] mb-1 block">Destination</label>
+          <label className="text-xs font-bold text-[#4A4A4A] uppercase tracking-wider mb-1 block">Destination</label>
           <select
             value={destinationCity || ''}
             onChange={(e) => setDestinationCity(e.target.value)}
-            className="w-full rounded-lg border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] px-3 py-2 text-sm"
+            className="w-full rounded-lg border border-[#E5BEBE] bg-white px-3 py-2 text-xs text-[#252525] outline-none focus:border-[#8EA66B] focus:ring-1 focus:ring-[#8EA66B] font-medium"
           >
             {graph.cities.map((c) => (
               <option key={c.id} value={c.id}>
@@ -229,18 +231,30 @@ function TSPRoutePreview() {
   const route = result.result.tour;
   const edges = route.slice(0, -1).map((from, index) => ({ from, to: route[index + 1], weight: 0 }));
   return (
-    <Card className="mb-6 overflow-hidden">
-      <div className="flex flex-wrap items-center justify-between gap-3 p-4 border-b border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)]">
+    <Card className="mb-6 overflow-hidden border border-[#E5BEBE] bg-white shadow-2xs">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-4 border-b border-[#E5BEBE] bg-[#FFFDF5]">
         <div>
-          <h2 className="font-display font-semibold">Calculated TSP Routes</h2>
-          <p className="text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">Only selected route locations are rendered.</p>
+          <h2 className="font-bold text-sm text-[#1E1E1E]">Calculated TSP Routes</h2>
+          <p className="text-xs text-[#4A4A4A]">Only selected route locations are rendered.</p>
         </div>
-        <select value={algorithm} onChange={(event) => setAlgorithm(event.target.value)} className="rounded-lg border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)] bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] px-3 py-2 text-sm">
+        <select
+          value={algorithm}
+          onChange={(event) => setAlgorithm(event.target.value)}
+          className="rounded-lg border border-[#E5BEBE] bg-white px-3 py-1.5 text-xs text-[#252525] outline-none focus:border-[#8EA66B] font-medium"
+        >
           {available.map(([key, label]) => <option key={key} value={key}>{label}</option>)}
         </select>
       </div>
-      <div className="h-[360px]"><MapView cities={result.cities} edgeList={result.edgeList || edges} highlightEdges={edges.map((edge) => [edge.from, edge.to])} highlightTone={algorithm === 'aiTSP' ? 'ai' : algorithm === 'dynamicProgramming' ? 'floyd' : algorithm === 'greedy' ? 'prim' : 'dijkstra'} highlightNodeIds={result.cities.map((city) => city.id)} /></div>
-      <p className="p-4 text-sm font-medium break-words">{route.join(' → ')}</p>
+      <div className="h-[360px]">
+        <MapView
+          cities={result.cities}
+          edgeList={result.edgeList || edges}
+          highlightEdges={edges.map((edge) => [edge.from, edge.to])}
+          highlightTone={algorithm === 'aiTSP' ? 'ai' : algorithm === 'dynamicProgramming' ? 'floyd' : algorithm === 'greedy' ? 'prim' : 'dijkstra'}
+          highlightNodeIds={result.cities.map((city) => city.id)}
+        />
+      </div>
+      <p className="p-4 text-xs font-semibold text-[#1E1E1E] break-words border-t border-[#E5BEBE] bg-[#FFFDF5]">{route.join(' → ')}</p>
     </Card>
   );
 }
@@ -322,26 +336,34 @@ export default function GraphWorkspace() {
           ) : (
             <>
               <Card className="overflow-hidden">
-                <div className="flex items-center justify-between p-3 border-b border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)]">
-                  <div className="flex gap-1">
+                <div className="flex items-center justify-between p-3 border-b border-[#e5bebe] bg-[#fffdf5]">
+                  <div className="flex gap-1 bg-[#fff9d6] p-1 rounded-xl border border-[#e5bebe]">
                     <button
                       onClick={() => setView('map')}
-                      className={`px-3 py-1.5 rounded-lg text-sm font-medium ${view === 'map' ? 'bg-[var(--color-dijkstra-soft)] dark:bg-[var(--color-dijkstra-soft-dark)] text-[var(--color-dijkstra)]' : 'text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]'}`}
+                      className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                        view === 'map'
+                          ? 'bg-white text-[#1e1e1e] shadow-xs border border-[#d8a2a2]'
+                          : 'text-[#4a4a4a] hover:text-[#1e1e1e]'
+                      }`}
                     >
                       Map
                     </button>
                     <button
                       onClick={() => setView('graph')}
-                      className={`px-3 py-1.5 rounded-lg text-sm font-medium ${view === 'graph' ? 'bg-[var(--color-dijkstra-soft)] dark:bg-[var(--color-dijkstra-soft-dark)] text-[var(--color-dijkstra)]' : 'text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]'}`}
+                      className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                        view === 'graph'
+                          ? 'bg-white text-[#1e1e1e] shadow-xs border border-[#d8a2a2]'
+                          : 'text-[#4a4a4a] hover:text-[#1e1e1e]'
+                      }`}
                     >
                       Graph
                     </button>
                   </div>
-                  <div className="hidden sm:flex gap-4 text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] font-data">
-                    <span>{graph.meta.vertices} vertices</span>
-                    <span>{graph.meta.edges} edges</span>
-                    <span>avg degree {graph.meta.averageDegree}</span>
-                    <span>density {graph.meta.density}</span>
+                  <div className="hidden sm:flex gap-2 text-xs font-data">
+                    <span className="px-2.5 py-1 rounded-md bg-white border border-[#e5bebe] text-[#252525] font-bold shadow-2xs">{graph.meta.vertices} vertices</span>
+                    <span className="px-2.5 py-1 rounded-md bg-white border border-[#e5bebe] text-[#252525] font-bold shadow-2xs">{graph.meta.edges} edges</span>
+                    <span className="px-2.5 py-1 rounded-md bg-white border border-[#e5bebe] text-[#252525] font-bold shadow-2xs">avg degree {graph.meta.averageDegree}</span>
+                    <span className="px-2.5 py-1 rounded-md bg-white border border-[#e5bebe] text-[#252525] font-bold shadow-2xs">density {graph.meta.density}</span>
                   </div>
                 </div>
                 <div className="h-[420px]">
@@ -364,7 +386,7 @@ export default function GraphWorkspace() {
                     />
                   )}
                 </div>
-                <p className="px-4 py-2.5 text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] border-t border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)]">
+                <p className="px-4 py-2.5 text-xs text-[#66615A] border-t border-[#E5BEBE] bg-[#FFFDF5]">
                   {graph.disclaimer}
                 </p>
               </Card>
@@ -375,20 +397,21 @@ export default function GraphWorkspace() {
 
       {graph && (
         <>
-          <div className="flex gap-2 mb-4 border-b border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)]">
+          <div className="flex gap-2 mb-4 border-b border-[#e5bebe]">
             {ALGO_TABS.map((tab) => {
-              const hex = tab.tone === 'dijkstra' ? '#2E6BFF' : tab.tone === 'prim' ? '#16B368' : '#7C5CFC';
+              const hex = tab.tone === 'prim' ? '#8ea66b' : '#d8a2a2';
               return (
                 <button
                   key={tab.key}
                   onClick={() => setActiveAlgo(tab.key)}
-                  className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 -mb-px transition-colors"
+                  className={`flex items-center gap-2 px-4 py-2.5 text-sm font-bold border-b-2 -mb-px transition-colors ${
+                    activeAlgo === tab.key ? 'text-[#1e1e1e]' : 'text-[#4a4a4a] hover:text-[#1e1e1e]'
+                  }`}
                   style={{
                     borderColor: activeAlgo === tab.key ? hex : 'transparent',
-                    color: activeAlgo === tab.key ? hex : undefined,
                   }}
                 >
-                  <tab.icon className="h-4 w-4" />
+                  <tab.icon className="h-4 w-4" style={{ color: activeAlgo === tab.key ? hex : '#66615a' }} />
                   {tab.label}
                 </button>
               );
@@ -404,11 +427,11 @@ export default function GraphWorkspace() {
             </div>
 
             {showFwWarning && (
-              <div className="mt-4 flex items-start gap-3 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 p-4">
-                <TriangleAlert className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
+              <div className="mt-4 flex items-start gap-3 rounded-xl bg-[#fff9d6] border border-[#d8a2a2] p-4 text-[#252525]">
+                <TriangleAlert className="h-5 w-5 text-[#b93838] shrink-0 mt-0.5" />
                 <div className="flex-1">
-                  <p className="text-sm text-amber-800 dark:text-amber-300">
-                    Floyd-Warshall has <span className="font-data">O(V³)</span> time complexity. With {selectedCities.length} cities selected,
+                  <p className="text-sm text-[#252525] font-medium">
+                    Floyd-Warshall has <span className="font-data font-bold">O(V³)</span> time complexity. With {selectedCities.length} cities selected,
                     increasing the number of vertices can significantly increase computation time.
                   </p>
                   <Button variant="outline" size="sm" className="mt-3" onClick={() => setFwWarningAcked(true)}>

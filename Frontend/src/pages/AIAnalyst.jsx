@@ -100,56 +100,56 @@ export default function AIAnalyst() {
       <div className="grid lg:grid-cols-[300px_1fr] gap-6">
         <div className="flex flex-col gap-4">
           <Card className="p-5">
-            <h3 className="font-display font-semibold text-sm mb-3">Current Context</h3>
+            <h3 className="font-semibold text-sm mb-3 text-[#1E1E1E]">Current Context</h3>
             {!graph && !tspResults.dynamicProgramming && !tspResults.greedy && !tspResults.dijkstraTSP && !tspResults.aiTSP ? (
-              <p className="text-sm text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">No graph or TSP tour generated yet. Build one in the Graph Workspace or TSP Explorer to give the AI real context.</p>
+              <p className="text-sm text-[#4A4A4A]">No graph or TSP tour generated yet. Build one in the Graph Workspace or TSP Explorer to give the AI real context.</p>
             ) : (
               <div className="space-y-3 text-sm">
                 {graph && (
-                  <p className="font-data text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">
+                  <p className="font-data text-xs text-[#4A4A4A] font-semibold">
                     {context.graphVertices} vertices · {context.graphEdges} edges
                   </p>
                 )}
                 {context.dijkstra && (
                   <div>
                     <Badge tone="dijkstra">Dijkstra</Badge>
-                    <p className="font-data text-xs mt-1">{context.dijkstra.distanceKm} km · {context.dijkstra.executionTimeMs} ms</p>
+                    <p className="font-data text-xs mt-1 text-[#252525] font-medium">{context.dijkstra.distanceKm} km · {context.dijkstra.executionTimeMs} ms</p>
                   </div>
                 )}
                 {context.prim && (
                   <div>
                     <Badge tone="prim">Prim</Badge>
-                    <p className="font-data text-xs mt-1">{context.prim.mstWeightKm} km MST · {context.prim.executionTimeMs} ms</p>
+                    <p className="font-data text-xs mt-1 text-[#252525] font-medium">{context.prim.mstWeightKm} km MST · {context.prim.executionTimeMs} ms</p>
                   </div>
                 )}
                 {context.floydWarshall && (
                   <div>
                     <Badge tone="floyd">Floyd-Warshall</Badge>
-                    <p className="font-data text-xs mt-1">{context.floydWarshall.totalUpdates} updates · {context.floydWarshall.executionTimeMs} ms</p>
+                    <p className="font-data text-xs mt-1 text-[#252525] font-medium">{context.floydWarshall.totalUpdates} updates · {context.floydWarshall.executionTimeMs} ms</p>
                   </div>
                 )}
                 {context.tsp?.dynamicProgramming && (
                   <div>
                     <Badge tone="floyd">TSP: Dynamic Programming</Badge>
-                    <p className="font-data text-xs mt-1">{context.tsp.dynamicProgramming.totalDistanceKm} km (optimal) · {context.tsp.dynamicProgramming.executionTimeMs} ms</p>
+                    <p className="font-data text-xs mt-1 text-[#252525] font-medium">{context.tsp.dynamicProgramming.totalDistanceKm} km (optimal) · {context.tsp.dynamicProgramming.executionTimeMs} ms</p>
                   </div>
                 )}
                 {context.tsp?.greedy && (
                   <div>
                     <Badge tone="prim">TSP: Greedy</Badge>
-                    <p className="font-data text-xs mt-1">{context.tsp.greedy.totalDistanceKm} km · {context.tsp.greedy.executionTimeMs} ms</p>
+                    <p className="font-data text-xs mt-1 text-[#252525] font-medium">{context.tsp.greedy.totalDistanceKm} km · {context.tsp.greedy.executionTimeMs} ms</p>
                   </div>
                 )}
                 {context.tsp?.dijkstra && (
                   <div>
                     <Badge tone="dijkstra">TSP: Dijkstra</Badge>
-                    <p className="font-data text-xs mt-1">{context.tsp.dijkstra.totalDistanceKm} km · {context.tsp.dijkstra.executionTimeMs} ms</p>
+                    <p className="font-data text-xs mt-1 text-[#252525] font-medium">{context.tsp.dijkstra.totalDistanceKm} km · {context.tsp.dijkstra.executionTimeMs} ms</p>
                   </div>
                 )}
                 {context.tsp?.aiTSP && (
                   <div>
                     <Badge tone="ai">TSP: AI Solver</Badge>
-                    <p className="font-data text-xs mt-1">{context.tsp.aiTSP.totalDistanceKm} km · {context.tsp.aiTSP.requestTimeMs} ms</p>
+                    <p className="font-data text-xs mt-1 text-[#252525] font-medium">{context.tsp.aiTSP.totalDistanceKm} km · {context.tsp.aiTSP.requestTimeMs} ms</p>
                   </div>
                 )}
               </div>
@@ -157,13 +157,13 @@ export default function AIAnalyst() {
           </Card>
 
           <Card className="p-5">
-            <h3 className="font-display font-semibold text-sm mb-3">Try asking</h3>
+            <h3 className="font-semibold text-sm mb-3 text-[#1E1E1E]">Try asking</h3>
             <div className="flex flex-col gap-2">
               {SUGGESTED_QUESTIONS.map((q) => (
                 <button
                   key={q}
                   onClick={() => send(q)}
-                  className="text-left text-xs px-3 py-2 rounded-lg bg-[var(--color-surface-2)] hover:bg-[var(--color-primary-soft)] hover:text-[var(--color-primary)] border border-transparent hover:border-blue-200/60 transition-all duration-200"
+                  className="text-left text-xs px-3 py-2 rounded-lg bg-[#FFFDF5] hover:bg-[#FFDCDC]/40 text-[#252525] border border-[#E5BEBE] hover:border-[#D8A2A2] transition-colors font-medium"
                 >
                   {q}
                 </button>
@@ -173,37 +173,37 @@ export default function AIAnalyst() {
         </div>
 
         <Card className="flex flex-col h-[600px] overflow-hidden">
-          <div ref={scrollRef} className="flex-1 overflow-y-auto scroll-thin p-4 space-y-3 bg-[#f8fafc]">
+          <div ref={scrollRef} className="flex-1 overflow-y-auto scroll-thin p-4 space-y-3 bg-[#FFFDF5]">
             {messages.map((m, i) => (
               <div key={i} className={`flex gap-2.5 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                <div className={`h-7 w-7 rounded-md flex items-center justify-center shrink-0 text-xs font-bold ${m.role === 'ai' ? 'bg-[#fef3c7] text-[#92400e]' : 'bg-[#eff6ff] text-[#1d4ed8]'}`}>
+                <div className={`h-7 w-7 rounded-md flex items-center justify-center shrink-0 text-xs font-bold ${m.role === 'ai' ? 'bg-[#8EA66B] text-white' : 'bg-[#D8A2A2] text-[#2A2424]'}`}>
                   {m.role === 'ai' ? <Bot className="h-3.5 w-3.5" /> : <User className="h-3.5 w-3.5" />}
                 </div>
-                <div className={`max-w-[80%] rounded-md px-3.5 py-2 text-xs leading-relaxed whitespace-pre-wrap ${m.role === 'ai' ? 'bg-white border border-[#e2e8f0] text-[#1a2332]' : 'bg-[#2563eb] text-white'}`}>
+                <div className={`max-w-[80%] rounded-lg px-3.5 py-2 text-xs leading-relaxed whitespace-pre-wrap ${m.role === 'ai' ? 'bg-white border border-[#E5BEBE] text-[#252525] shadow-2xs' : 'bg-[#FFDCDC] text-[#252525] border border-[#E5BEBE] font-medium'}`}>
                   {m.content}
                 </div>
               </div>
             ))}
             {loading && (
               <div className="flex gap-2.5">
-                <div className="h-7 w-7 rounded-md flex items-center justify-center bg-[#fef3c7] text-[#92400e]">
+                <div className="h-7 w-7 rounded-md flex items-center justify-center bg-[#8EA66B] text-white">
                   <Sparkles className="h-3.5 w-3.5 animate-pulse" />
                 </div>
-                <div className="rounded-md px-3.5 py-2 text-xs bg-white border border-[#e2e8f0] text-[#637083]">
+                <div className="rounded-lg px-3.5 py-2 text-xs bg-white border border-[#E5BEBE] text-[#4A4A4A] italic">
                   Consulting algorithmic knowledge base…
                 </div>
               </div>
             )}
           </div>
-          <div className="border-t border-[#e2e8f0] bg-white p-3 flex gap-2">
+          <div className="border-t border-[#E5BEBE] bg-[#FFFDF5] p-3 flex gap-2">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && send()}
               placeholder="Ask about time complexity, bitonic subproblems, edge relaxation..."
-              className="flex-1 rounded-md border border-[#e2e8f0] bg-white px-3 py-1.5 text-xs text-[#1a2332] outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors"
+              className="flex-1 rounded-lg border border-[#E5BEBE] bg-white px-3 py-2 text-xs text-[#252525] placeholder:text-[#77716A] outline-none focus:border-[#8EA66B] focus:ring-1 focus:ring-[#8EA66B] transition-colors"
             />
-            <Button size="sm" icon={Send} onClick={() => send()} loading={loading} disabled={!input.trim()}>
+            <Button variant="primary" size="sm" icon={Send} onClick={() => send()} loading={loading} disabled={!input.trim()}>
               Send Query
             </Button>
           </div>

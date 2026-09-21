@@ -67,13 +67,13 @@ export default function Complexity() {
       />
 
       <Card className="p-6 mb-6">
-        <h3 className="font-display font-semibold text-lg mb-3">Big-O Notation, briefly</h3>
-        <p className="text-sm text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] leading-relaxed">
+        <h3 className="font-display font-semibold text-lg mb-3 text-[#1E1E1E]">Big-O Notation, briefly</h3>
+        <p className="text-sm text-[#4A4A4A] leading-relaxed">
           Big-O describes how an algorithm's running time or memory use grows as the input size grows, ignoring
-          constant factors. <span className="font-data">V</span> is the number of vertices (cities) and{' '}
-          <span className="font-data">E</span> is the number of edges (connections) in the graph. An algorithm that
-          is <span className="font-data">O(V²)</span> will take roughly four times as long if you double the number
-          of cities; an <span className="font-data">O(V³)</span> algorithm will take roughly eight times as long.
+          constant factors. <span className="font-data font-semibold text-[#1E1E1E]">V</span> is the number of vertices (cities) and{' '}
+          <span className="font-data font-semibold text-[#1E1E1E]">E</span> is the number of edges (connections) in the graph. An algorithm that
+          is <span className="font-data font-semibold text-[#1E1E1E]">O(V²)</span> will take roughly four times as long if you double the number
+          of cities; an <span className="font-data font-semibold text-[#1E1E1E]">O(V³)</span> algorithm will take roughly eight times as long.
         </p>
       </Card>
 
@@ -81,34 +81,34 @@ export default function Complexity() {
         {ALGO_COMPLEXITY.map((a) => (
           <Card key={a.name} accent={a.tone} className="p-5">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="font-display font-semibold">{a.name}</h3>
+              <h3 className="font-display font-semibold text-sm text-[#1E1E1E]">{a.name}</h3>
               <Badge tone={a.tone}>{a.category}</Badge>
             </div>
-            <p className="font-data text-sm mb-1">Time: {a.time}</p>
-            <p className="font-data text-sm mb-3">Space: {a.space}</p>
-            <p className="text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">{a.note}</p>
+            <p className="font-data text-xs font-semibold text-[#252525] mb-1">Time: <span className="font-normal text-[#4A4A4A]">{a.time}</span></p>
+            <p className="font-data text-xs font-semibold text-[#252525] mb-3">Space: <span className="font-normal text-[#4A4A4A]">{a.space}</span></p>
+            <p className="text-xs text-[#66615A] leading-relaxed">{a.note}</p>
           </Card>
         ))}
       </div>
 
       <Card className="p-6 mb-8">
-        <h3 className="font-semibold text-xs uppercase tracking-wider text-[#0f172a] mb-1">Theoretical Growth Curves</h3>
-        <p className="text-xs text-[#637083] mb-4">
+        <h3 className="font-bold text-sm uppercase tracking-wider text-[#1E1E1E] mb-1">Theoretical Growth Curves</h3>
+        <p className="text-xs text-[#4A4A4A] mb-4">
           A theoretical visualization of how each growth rate scales with input size V (log scale on the y-axis) —
           this is not a measured benchmark.
         </p>
         <ResponsiveContainer width="100%" height={320}>
           <LineChart data={growthData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" opacity={0.75} />
-            <XAxis dataKey="V" tick={{ fontSize: 11 }} label={{ value: 'V (vertices)', position: 'insideBottom', offset: -5, fontSize: 11 }} />
-            <YAxis scale="log" domain={['auto', 'auto']} tick={{ fontSize: 11 }} allowDataOverflow />
-            <Tooltip />
-            <Legend wrapperStyle={{ fontSize: 11 }} />
-            <Line type="monotone" dataKey="O(V)" stroke="#94A3B8" dot={false} strokeWidth={2} />
-            <Line type="monotone" dataKey="O(log V)" stroke="#059669" dot={false} strokeWidth={2} />
-            <Line type="monotone" dataKey="O(V log V)" stroke="#2563eb" dot={false} strokeWidth={2} />
-            <Line type="monotone" dataKey="O(V²)" stroke="#d97706" dot={false} strokeWidth={2} />
-            <Line type="monotone" dataKey="O(V³)" stroke="#7c3aed" dot={false} strokeWidth={2} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#EADCC8" opacity={0.8} />
+            <XAxis dataKey="V" stroke="#4A4A4A" tick={{ fontSize: 11, fill: '#4A4A4A' }} label={{ value: 'V (vertices)', position: 'insideBottom', offset: -5, fontSize: 11, fill: '#252525' }} />
+            <YAxis scale="log" domain={['auto', 'auto']} stroke="#4A4A4A" tick={{ fontSize: 11, fill: '#4A4A4A' }} allowDataOverflow />
+            <Tooltip contentStyle={{ backgroundColor: '#FFFDF5', borderColor: '#E5BEBE', borderRadius: '8px', color: '#1E1E1E', fontSize: '12px' }} />
+            <Legend wrapperStyle={{ fontSize: 11, color: '#252525' }} />
+            <Line type="monotone" dataKey="O(V)" stroke="#66615A" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="O(log V)" stroke="#8EA66B" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="O(V log V)" stroke="#D8A2A2" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="O(V²)" stroke="#B87B58" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="O(V³)" stroke="#8B3A62" dot={false} strokeWidth={2} />
           </LineChart>
         </ResponsiveContainer>
       </Card>
@@ -116,15 +116,15 @@ export default function Complexity() {
       <Card className="p-6">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <h3 className="font-semibold text-xs uppercase tracking-wider text-[#0f172a]">AI Performance Analysis</h3>
-            <p className="text-xs text-[#637083]">Uses your actual measured execution times - never invented figures.</p>
+            <h3 className="font-bold text-sm uppercase tracking-wider text-[#1E1E1E]">AI Performance Analysis</h3>
+            <p className="text-xs text-[#4A4A4A] mt-0.5">Uses your actual measured execution times - never invented figures.</p>
           </div>
-          <Button variant="secondary" icon={Sparkles} loading={loading} onClick={handleAnalyze} disabled={!hasMetrics}>
+          <Button variant="primary" icon={Sparkles} loading={loading} onClick={handleAnalyze} disabled={!hasMetrics}>
             Analyze Performance
           </Button>
         </div>
-        {!hasMetrics && <p className="text-xs text-[#637083]">Run an algorithm in the Graph Workspace first to unlock this.</p>}
-        {analysis && <div className="mt-3 rounded-md bg-[#fffbeb] border border-[#fde68a] p-4 text-xs text-[#78350f] leading-relaxed whitespace-pre-wrap">{analysis}</div>}
+        {!hasMetrics && <p className="text-xs text-[#66615A] italic">Run an algorithm in the Graph Workspace first to unlock this.</p>}
+        {analysis && <div className="mt-3 rounded-lg bg-[#FFF9D6] border border-[#E5BEBE] p-4 text-xs text-[#252525] leading-relaxed whitespace-pre-wrap font-medium">{analysis}</div>}
       </Card>
     </div>
   );

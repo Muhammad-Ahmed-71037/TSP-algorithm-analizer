@@ -140,21 +140,21 @@ export default function Compare() {
         <>
           <Card className="overflow-x-auto mb-8">
             <table className="w-full text-xs min-w-[640px]">
-              <thead className="bg-[#f8fafc] border-b border-[#e2e8f0]">
+              <thead className="bg-[#fffdf5] border-b border-[#e5bebe]">
                 <tr>
                   {['Metric', ...rows.map((r) => r.name)].map((h) => (
-                    <th key={h} className="px-4 py-2.5 text-left font-bold text-[10px] uppercase tracking-wider text-[#637083]">
+                    <th key={h} className="px-4 py-3 text-left font-bold text-[10px] uppercase tracking-wider text-[#4a4a4a]">
                       {h}
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="font-mono text-xs divide-y divide-[#f1f5f9]">
+              <tbody className="font-mono text-xs divide-y divide-[#f0d5d5]">
                 {['category', 'purpose', 'vertices', 'edges', 'time', 'operations', 'complexity', 'result'].map((field, idx) => (
-                  <tr key={field} className={idx % 2 === 1 ? 'bg-[#fafbfc]' : 'bg-white'}>
-                    <td className="px-4 py-2.5 font-sans font-semibold text-[#1a2332] capitalize">{field === 'time' ? 'Execution Time' : field}</td>
+                  <tr key={field} className={idx % 2 === 1 ? 'bg-[#fff9d6]/30' : 'bg-white'}>
+                    <td className="px-4 py-2.5 font-sans font-bold text-[#1e1e1e] capitalize">{field === 'time' ? 'Execution Time' : field}</td>
                     {rows.map((r) => (
-                      <td key={r.name} className="px-4 py-2.5 text-[#475569]">
+                      <td key={r.name} className="px-4 py-2.5 text-[#252525] font-medium">
                         {field === 'time' ? `${r[field]} ms` : r[field]}
                       </td>
                     ))}
@@ -166,29 +166,29 @@ export default function Compare() {
 
           <div className="grid sm:grid-cols-2 gap-6 mb-8">
             <Card className="p-5">
-              <h3 className="font-semibold text-xs uppercase tracking-wider text-[#0f172a] mb-0.5">Observed Execution Time</h3>
-              <p className="text-xs text-[#637083] mb-4">Measured runtime on current graph (hrtime nanosecond resolution).</p>
+              <h3 className="font-bold text-xs uppercase tracking-wider text-[#1e1e1e] mb-0.5">Observed Execution Time</h3>
+              <p className="text-xs text-[#4a4a4a] mb-4">Measured runtime on current graph (hrtime nanosecond resolution).</p>
               <ResponsiveContainer width="100%" height={220}>
                 <BarChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                  <XAxis dataKey="name" tick={{ fontSize: 11 }} />
-                  <YAxis tick={{ fontSize: 11 }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0d5d5" />
+                  <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#4a4a4a' }} />
+                  <YAxis tick={{ fontSize: 11, fill: '#4a4a4a' }} />
                   <Tooltip />
-                  <Bar dataKey="Execution Time (ms)" fill="#2563eb" radius={[2, 2, 0, 0]} />
+                  <Bar dataKey="Execution Time (ms)" fill="#8ea66b" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </Card>
             <Card className="p-5">
-              <h3 className="font-semibold text-xs uppercase tracking-wider text-[#0f172a] mb-0.5">Operations Performed</h3>
-              <p className="text-xs text-[#637083] mb-4">Internal decisions, relaxations, or state computations evaluated.</p>
+              <h3 className="font-bold text-xs uppercase tracking-wider text-[#1e1e1e] mb-0.5">Operations Performed</h3>
+              <p className="text-xs text-[#4a4a4a] mb-4">Internal decisions, relaxations, or state computations evaluated.</p>
               <ResponsiveContainer width="100%" height={220}>
                 <BarChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                  <XAxis dataKey="name" tick={{ fontSize: 11 }} />
-                  <YAxis tick={{ fontSize: 11 }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0d5d5" />
+                  <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#4a4a4a' }} />
+                  <YAxis tick={{ fontSize: 11, fill: '#4a4a4a' }} />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="Operations" fill="#7c3aed" radius={[2, 2, 0, 0]} />
+                  <Bar dataKey="Operations" fill="#d8a2a2" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </Card>
@@ -196,14 +196,14 @@ export default function Compare() {
 
           <Card className="p-6">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="font-display font-semibold text-lg">AI Comparison</h3>
+              <h3 className="font-bold text-lg text-[#1e1e1e]">AI Comparison</h3>
               <Button variant="secondary" icon={Sparkles} loading={loading} onClick={handleCompare} disabled={rows.length < 2}>
                 Compare with AI
               </Button>
             </div>
-            {rows.length < 2 && <p className="text-sm text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">Run at least 2 algorithms to enable AI comparison.</p>}
+            {rows.length < 2 && <p className="text-sm text-[#66615a] font-medium">Run at least 2 algorithms to enable AI comparison.</p>}
             {comparison && (
-              <div className="mt-3 rounded-xl bg-[var(--color-ai-soft)] dark:bg-[var(--color-ai-soft-dark)] p-4 text-sm leading-relaxed whitespace-pre-wrap">
+              <div className="mt-3 rounded-xl bg-[#fff9d6] border border-[#e5bebe] p-4 text-sm text-[#252525] leading-relaxed whitespace-pre-wrap">
                 {comparison}
               </div>
             )}

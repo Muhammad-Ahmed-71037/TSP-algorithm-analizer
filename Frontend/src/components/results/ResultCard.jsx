@@ -11,8 +11,8 @@ function cityName(cities, id) {
 function Field({ label, value }) {
   return (
     <div>
-      <p className="text-xs font-semibold text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] mb-0.5">{label}</p>
-      <p className="font-data text-sm">{value}</p>
+      <p className="text-xs font-bold text-[#4a4a4a] uppercase tracking-wider mb-0.5">{label}</p>
+      <p className="font-data text-sm font-bold text-[#1e1e1e]">{value}</p>
     </div>
   );
 }
@@ -43,8 +43,8 @@ export default function ResultCard({ type, data, cities }) {
     <Card accent={tone} className="p-6">
       <div className="flex items-center justify-between mb-5">
         <div>
-          <h3 className="font-display font-semibold text-lg">Result</h3>
-          <p className="text-sm text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)]">{data.algorithm}</p>
+          <h3 className="font-bold text-lg text-[#1e1e1e]">Result</h3>
+          <p className="text-sm font-semibold text-[#4a4a4a]">{data.algorithm}</p>
         </div>
         <Badge tone={tone}>{data.category}</Badge>
       </div>
@@ -88,17 +88,17 @@ export default function ResultCard({ type, data, cities }) {
 
       {type !== 'floyd' && (
         <div className="mb-5">
-          <p className="text-xs font-semibold text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] mb-1.5">
+          <p className="text-xs font-bold text-[#4a4a4a] uppercase tracking-wider mb-1.5">
             {type === 'dijkstra' ? 'PATH' : 'MST EDGES'}
           </p>
           {type === 'dijkstra' ? (
-            <p className="text-sm">
+            <p className="text-sm font-semibold text-[#1e1e1e]">
               {data.result.path.length > 0 ? data.result.path.map((id) => cityName(cities, id)).join(' → ') : 'No path found'}
             </p>
           ) : (
             <div className="flex flex-wrap gap-1.5">
               {data.result.mstEdges.map((e, i) => (
-                <span key={i} className="text-xs px-2 py-1 rounded-full bg-[var(--color-surface-2)] dark:bg-[var(--color-surface-2-dark)] font-data">
+                <span key={i} className="text-xs px-2 py-1 rounded-md bg-[#ffdcdc] text-[#252525] border border-[#e5bebe] font-data font-semibold">
                   {cityName(cities, e.from)}—{cityName(cities, e.to)}
                 </span>
               ))}
@@ -109,17 +109,17 @@ export default function ResultCard({ type, data, cities }) {
 
       {data.pathInfo?.path && (
         <div className="mb-5">
-          <p className="text-xs font-semibold text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] mb-1.5">RECONSTRUCTED PATH</p>
-          <p className="text-sm">{data.pathInfo.path.map((id) => cityName(cities, id)).join(' → ')}</p>
+          <p className="text-xs font-bold text-[#4a4a4a] uppercase tracking-wider mb-1.5">RECONSTRUCTED PATH</p>
+          <p className="text-sm font-semibold text-[#1e1e1e]">{data.pathInfo.path.map((id) => cityName(cities, id)).join(' → ')}</p>
         </div>
       )}
 
-      <div className="flex items-center gap-4 text-xs text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted-dark)] mb-5">
+      <div className="flex items-center gap-4 text-xs font-semibold text-[#66615a] mb-5">
         <span className="flex items-center gap-1">
-          <Clock className="h-3.5 w-3.5" /> {data.complexity.time}
+          <Clock className="h-3.5 w-3.5 text-[#8ea66b]" /> {data.complexity.time}
         </span>
         <span className="flex items-center gap-1">
-          <Hash className="h-3.5 w-3.5" /> Space {data.complexity.space}
+          <Hash className="h-3.5 w-3.5 text-[#d8a2a2]" /> Space {data.complexity.space}
         </span>
       </div>
 
@@ -128,7 +128,7 @@ export default function ResultCard({ type, data, cities }) {
       </Button>
 
       {explanation && (
-        <div className="mt-4 rounded-xl bg-[var(--color-ai-soft)] dark:bg-[var(--color-ai-soft-dark)] p-4 text-sm leading-relaxed whitespace-pre-wrap">
+        <div className="mt-4 rounded-xl bg-[#fff9d6] border border-[#e5bebe] p-4 text-sm text-[#252525] leading-relaxed whitespace-pre-wrap">
           {explanation}
         </div>
       )}

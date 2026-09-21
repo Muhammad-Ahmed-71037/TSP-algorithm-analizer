@@ -11,11 +11,11 @@ function FitBounds({ bounds }) {
 }
 
 const TONE_HEX = {
-  dijkstra: '#2563eb', // Royal Blue
-  prim: '#059669',     // Emerald
-  floyd: '#7c3aed',    // Purple/Indigo
-  neutral: '#94a3b8',  // Slate gray
-  ai: '#d97706',       // Amber/Ochre
+  dijkstra: '#8ea66b',
+  prim: '#8ea66b',
+  floyd: '#8ea66b',
+  neutral: '#d8a2a2',
+  ai: '#8ea66b',
 };
 
 /**
@@ -42,7 +42,7 @@ export default function MapView({ cities = [], edgeList = [], highlightEdges = [
   if (cities.length === 0) return null;
 
   return (
-    <MapContainer bounds={bounds} boundsOptions={{ padding: [40, 40] }} scrollWheelZoom className="rounded-2xl">
+    <MapContainer bounds={bounds} boundsOptions={{ padding: [40, 40] }} scrollWheelZoom className="rounded-xl border border-[#e5bebe]">
       <FitBounds bounds={bounds} />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -60,9 +60,9 @@ export default function MapView({ cities = [], edgeList = [], highlightEdges = [
             key={key}
             positions={[[from.lat, from.lng], [to.lat, to.lng]]}
             pathOptions={{
-              color: isHighlighted ? TONE_HEX[highlightTone] : TONE_HEX.neutral,
+              color: isHighlighted ? '#8ea66b' : '#d8a2a2',
               weight: isHighlighted ? 4 : 1.5,
-              opacity: isHighlighted ? 0.95 : 0.35,
+              opacity: isHighlighted ? 0.95 : 0.45,
             }}
           >
             <Tooltip sticky>{Math.round(edge.weight)} km</Tooltip>
@@ -78,9 +78,9 @@ export default function MapView({ cities = [], edgeList = [], highlightEdges = [
             center={[c.lat, c.lng]}
             radius={emphasized ? 7 : 5}
             pathOptions={{
-              color: emphasized ? TONE_HEX[highlightTone] : '#334155',
-              fillColor: emphasized ? TONE_HEX[highlightTone] : '#64748B',
-              fillOpacity: 0.9,
+              color: emphasized ? '#8ea66b' : '#d8a2a2',
+              fillColor: emphasized ? '#8ea66b' : '#ffdcdc',
+              fillOpacity: 0.95,
               weight: 2,
             }}
           >
