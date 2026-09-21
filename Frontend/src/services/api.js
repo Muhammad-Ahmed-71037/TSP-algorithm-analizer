@@ -18,7 +18,7 @@ async function request(path, options = {}) {
       ...options,
     });
   } catch {
-    throw new Error('Could not reach the server. Is the backend running on port 5000?');
+    throw new Error('Could not reach the server. Is the backend running ');
   }
 
   let data = null;
